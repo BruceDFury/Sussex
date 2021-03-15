@@ -123,12 +123,11 @@ if(isset($_SESSION['success'])){
 	</div>
 </div>
 <div class="col-sm-4"></div>
-</div> 
 </div>
-
 <?php
 require_once 'footer.php';  
-?>
+?> 
+</div>
 
 <script type="text/javascript">
 $(document).ready(function(){
