@@ -1,64 +1,75 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Sussex Companions</title>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sussex</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" >
+  <!-- bootstrab and javascript libraries for tokenfield tags -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
 
-    <link rel="stylesheet" href="css/style.css" >
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
-    <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
-    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
-    <meta name="theme-color" content="#563d7c">
-	
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <b><a class="navbar-brand" href="#">Sussex Companions</a></b>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <!-- Bootstrap CSS 5-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<div class="row bg-dark" style="margin-top: -15px;">
+  <div class="col-sm-12" style="text-align: right;">    
+    <?php
+    session_start();
+    
+    if((isset($_SESSION['name']) && !empty($_SESSION['name']))) {
+
+        echo '<li class="nav-item">
+        <a class="nav-link" href="signout.php" style="font-size: 15pt;">Welcome '.$_SESSION['name'].'. Sign Out</a>
+        </li>';
+
+
+      } else{
+
+        echo '<li class="nav-item">
+        <a class="nav-link" href="login.php" style="font-size: 15pt;">Login/Sign up</a>
+        </li>';
+      }
+
+      ?>
+
+  </div>
+</div>
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="margin-right: -15px;">
+  <a class="navbar-brand" href="index.php">Sussex Companions</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="Index.html">Home <span class="sr-only">(current)</span></a>
-      </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="#">Events</a>
-      </li>
-	   <li class="nav-item">
-        <a class="nav-link" href="#">MemberShip</a>
+      <li class="nav-item">
+        <a class="nav-link" href="#aboutUs">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="AboutUs.html">About Us</a>
+        <a class="nav-link" href="#services">Services</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="ContactUs.html">Contact Us</a>
+        <a class="nav-link" href="#upcomingEvents">Upcoming Events</a>
       </li>
-	   
       <li class="nav-item">
-        <a class="nav-link" href="#">SignUp/Login</a>
-      </li>
+        <a class="nav-link" href="#customers">Customers</a>
+      </li>     
     </ul>
-  </div>
+  </div>  
 </nav>
-
-    </head>
-	
-  <body>
-
-  </body>
-
-  
-</html>
-
-
