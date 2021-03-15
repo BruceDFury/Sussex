@@ -2,9 +2,9 @@
 require_once 'header.php'; 
 ?>
 
-<div class="row bg-dark">
+<div class="row bg-light" style="margin-top: -25px;">
     <div class="col-sm-12">
-    	<a class="navbar-brand" href="dashboard.php" style="color: white; font-size: 18pt;">Dashboard</a>
+    	<a class="navbar-brand" href="dashboard.php" style="font-size: 18pt;">Dashboard</a>
     </div>
 </div>
 

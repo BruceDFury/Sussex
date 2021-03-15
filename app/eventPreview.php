@@ -2,9 +2,9 @@
 require_once 'header.php'; 
 ?>
 
-<div class="row bg-dark">
+<div class="row bg-light" style="margin-top: -20px;">
     <div class="col-sm-12">
-      <a href="dashboard.php" style="color: white; font-size: 18pt; text-decoration: none;">Dashboard</a><font color="white" style="font-size: 18pt"> / <a href="events.php" style="text-decoration: none; color: white;">Events</a> / Rock Climbing</font>
+      <a href="dashboard.php" style="font-size: 18pt; text-decoration: none;">Dashboard / </a><a href="events.php" style="text-decoration: none; font-size: 18pt;">Events</a><font style="font-size: 18pt"> / Rock Climbing</font>
     </div>
 </div>
 
