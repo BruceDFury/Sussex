@@ -53,7 +53,11 @@ if(isset($_SESSION['success'])){
 	                
 			    </div>
 			    <div id="signUp" class="tab-pane fade">
-			       <form method="POST" action="registerUser.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px">
+			       <form method="POST" action="registerUser.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px" enctype="multipart/form-data">
+			       		<div class="form-group" style="text-align: center;">
+			       			<img src="" onerror=this.src="img/person_alt.png" id="output_image" style="vertical-align: middle; width: 150px; height: 150px; border-radius: 50%;">
+				       		<input type="file" onchange="preview_image(event)" name="uploadfile" required="">
+ 						</div>
 			       		<div class="form-group">
 	                    <label for="title">Title</label>
 	                    <select class="form-control" id="title" name="title" required="">
@@ -146,4 +150,17 @@ $(document).ready(function(){
   showAutocompleteOnFocus: true
  });
 });
+</script>
+
+<script type='text/javascript'>
+function preview_image(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('output_image');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
 </script>

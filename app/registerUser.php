@@ -28,7 +28,11 @@ else{
 
 	if($password===$cPassword){
 
-		$insrtQuery = "insert into member (title,firstName,lastName,dob,nic,phone,email,password,favouriteActivity,personalityType,hobies) values ('$title','$firstName','$lastName','$dob','$nic','$phone','$email','$password','$favouriteActivity','$personalityType','$hobies')";
+		$filename = $_FILES["uploadfile"]["name"]; 
+		$tempname = $_FILES["uploadfile"]["tmp_name"];     
+		$folder = "img/".$filename; 
+
+		$insrtQuery = "insert into member (title,firstName,lastName,dob,nic,phone,email,password,favouriteActivity,personalityType,hobies,image) values ('$title','$firstName','$lastName','$dob','$nic','$phone','$email','$password','$favouriteActivity','$personalityType','$hobies','$filename')";
 		$resultReg = mysqli_query($conn,$insrtQuery);
 		
 		if (!$resultReg) 
@@ -37,10 +41,17 @@ else{
 			header("Location:/Sussex/app/login.php");
 		}
 		else
-		{
-			$_SESSION['success'] = "success";
-			$_SESSION['error'] = "Account Successfully created!";
-			header("Location:/Sussex/app/login.php");
+		{	  
+			// Now let's move the uploaded image into the folder: image 
+			if (move_uploaded_file($tempname, $folder))  {
+				$_SESSION['success'] = "success";
+				$_SESSION['error'] = "Account Successfully created!";
+				header("Location:/Sussex/app/login.php");
+				
+			}else{
+				$_SESSION['error'] = "Image not Updated";
+				header("Location:/Sussex/app/login.php");
+			}
 		}
 	}
 	else
@@ -50,4 +61,5 @@ else{
 		//echo "Password and Confirm Password must be same";
 	}
 }
+?>
 ?>

@@ -73,6 +73,9 @@
         echo '<li class="nav-item">
         <a class="nav-link" href="dashboard.php">Dashboard</a>
         </li>';
+        echo '<li class="nav-item">
+        <a class="nav-link" href="profile.php">Profile</a>
+        </li>';
       }
       ?>      
     </ul>
