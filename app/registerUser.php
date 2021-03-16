@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once 'db_connector.php';
-//require_once 'header.php';
+require_once 'header.php';
 
 $title = $_POST['title'];
 $firstName = $_POST['fname'];

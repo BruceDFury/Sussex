@@ -2,7 +2,7 @@
 require_once 'header.php'; 
 ?>
 
-<div class="row bg-light" style="margin-top: -20px;">
+<div class="row container" style="margin-top: -20px;">
     <div class="col-sm-12">
       <a href="dashboard.php" style="font-size: 18pt; text-decoration: none;">Dashboard / </a><a href="events.php" style="text-decoration: none; font-size: 18pt;">Events</a><font style="font-size: 18pt"> / Rock Climbing</font>
     </div>
@@ -22,7 +22,7 @@ require_once 'header.php';
                     <div class="col-md-6">
                         <p class="card-text"><small><b>Status: Pending</b></small></p>
 
-                        <h5 class="card-title">Rock Climbing</h5>
+                        <h5 class="card-title"><b>Rock Climbing</b></h5>
 
                         <p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>
                         <form action="eventPreview.php" method="POST">

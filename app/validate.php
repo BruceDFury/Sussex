@@ -1,6 +1,5 @@
 <?php
 require_once 'header.php';
-require_once 'db_connector.php';
 
 $email = $_POST['email'];
 $pw = md5($_POST['password']);

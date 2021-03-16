@@ -31,13 +31,13 @@
   <div class="col-sm-12" style="text-align: right;">    
     <?php
     session_start();
+    require_once 'db_connector.php';
     
     if((isset($_SESSION['name']) && !empty($_SESSION['name']))) {
 
         echo '<li class="nav-item">
         <a class="nav-link" href="signout.php" style="font-size: 15pt;">Welcome '.$_SESSION['name'].'. Sign Out</a>
         </li>';
-
 
       } else{
 
@@ -62,14 +62,19 @@
         <a class="nav-link" href="#aboutUs">About Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#services">Services</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="#upcomingEvents">Upcoming Events</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#customers">Customers</a>
-      </li>     
+      </li>
+      <?php
+      if((isset($_SESSION['name']) && !empty($_SESSION['name']))) {
+
+        echo '<li class="nav-item">
+        <a class="nav-link" href="dashboard.php">Dashboard</a>
+        </li>';
+      }
+      ?>      
     </ul>
   </div>  
 </nav>
