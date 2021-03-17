@@ -23,7 +23,7 @@ if(isset($_SESSION['success'])){
 }  
 ?>
 
-<div class="container" style="padding-top: 100px">
+<div class="container" style="padding-top: 20px;">
 <div class="row">
 <div class="col-sm-4"></div>
 <div class="col-sm-4">	
@@ -55,8 +55,8 @@ if(isset($_SESSION['success'])){
 			    <div id="signUp" class="tab-pane fade">
 			       <form method="POST" action="registerUser.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px" enctype="multipart/form-data">
 			       		<div class="form-group" style="text-align: center;">
-			       			<img src="" onerror=this.src="img/person_alt.png" id="output_image" style="vertical-align: middle; width: 150px; height: 150px; border-radius: 50%;">
-				       		<input type="file" onchange="preview_image(event)" name="uploadfile" required="">
+			       			<img src="" onerror=this.src="img/users/person_alt.png" id="output_image" style="vertical-align: middle; width: 150px; height: 150px; border-radius: 50%;"></a>
+				       		<input type="file" onchange="preview_image(event)" name="uploadfile" class="form-control" required="">
  						</div>
 			       		<div class="form-group">
 	                    <label for="title">Title</label>
@@ -101,10 +101,8 @@ if(isset($_SESSION['success'])){
 	                    </div>
 	                    <div class="form-group">
 	                    	<label>Personality Description</label>
-	                   		<input type="text" class="form-control" name="favouriteActivity" id="favouriteActivity" placeholder="Favourite Activity" required="">
-	                   		</br>
-
-		                    <select class="form-control" id="personalityType" name="personalityType" required="">
+	                   		
+	                   		<select class="form-control" id="personalityType" name="personalityType" required="">
 		                    	<option value="" disabled selected hidden>Select Personality Type</option>
 		                        <option>Driver</option>
 		                        <option>Analytical</option>
@@ -112,7 +110,11 @@ if(isset($_SESSION['success'])){
 		                        <option>Expressive</option>
 		                    </select>
 		                	</br>
+
 		                    <input type="text" name="hobies" id="hobies"  class="form-control" placeholder="Hobbies" required=""/>
+		                	</br>
+
+		                	<input type="text" name="games" id="games"  class="form-control" placeholder="Games" required=""/>
 	                    </div>
 	                    <div>
 	                   		<input type="checkbox" value="" required/> Agree, Terms and Conditions

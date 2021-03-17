@@ -11,9 +11,10 @@ $phone = $_POST['phone'];
 $email = $_POST['email'];
 $password = md5($_POST['password']);
 $cPassword = md5($_POST['cpassword']);
-$favouriteActivity = $_POST['favouriteActivity'];
 $personalityType = $_POST['personalityType'];
 $hobies = $_POST['hobies'];
+$games = $_POST['games'];
+
 
 //select qurey
 $selectQuery = "select * from member where email = '$email'";
@@ -30,9 +31,9 @@ else{
 
 		$filename = $_FILES["uploadfile"]["name"]; 
 		$tempname = $_FILES["uploadfile"]["tmp_name"];     
-		$folder = "img/".$filename; 
+		$folder = "img/users/".$filename; 
 
-		$insrtQuery = "insert into member (title,firstName,lastName,dob,nic,phone,email,password,favouriteActivity,personalityType,hobies,image) values ('$title','$firstName','$lastName','$dob','$nic','$phone','$email','$password','$favouriteActivity','$personalityType','$hobies','$filename')";
+		$insrtQuery = "insert into member (title,firstName,lastName,dob,nic,phone,email,password,personalityType,hobies,games,image) values ('$title','$firstName','$lastName','$dob','$nic','$phone','$email','$password','$personalityType','$hobies','$games','$filename')";
 		$resultReg = mysqli_query($conn,$insrtQuery);
 		
 		if (!$resultReg) 

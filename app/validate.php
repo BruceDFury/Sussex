@@ -11,8 +11,17 @@ $recCount = mysqli_num_rows($result);
 
 if ($recCount != null) {
 	$res=mysqli_fetch_row($result);
-				
-	$_SESSION['name'] = $res[2];
+	
+	$_SESSION['title'] = $res[1];			
+	$_SESSION['first_name'] = $res[2];
+	$_SESSION['last_name'] = $res[3];
+	$_SESSION['dob'] = $res[4];
+	$_SESSION['nic'] = $res[5];
+	$_SESSION['phone'] = $res[6];
+	$_SESSION['email'] = $res[7];
+	$_SESSION['personality_type'] = $res[9];
+	$_SESSION['hobbies'] = $res[10];
+	$_SESSION['games'] = $res[11];
 
     header("Location:/Sussex/app/dashboard.php"); 
 }

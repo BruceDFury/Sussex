@@ -13,15 +13,15 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="img/slide1.jpg" alt="Los Angeles" style="width:100%; height: 650px;">
+      <img src="img/slide/slide1.jpg" alt="Los Angeles" style="width:100%; height: 650px;">
     </div>
 
     <div class="item">
-      <img src="img/slide2.jpg" alt="Chicago" style="width:100%; height: 650px;">
+      <img src="img/slide/slide2.jpg" alt="Chicago" style="width:100%; height: 650px;">
     </div>
   
     <div class="item">
-      <img src="img/slide3.jpg" alt="New york" style="width:100%; height: 650px;">
+      <img src="img/slide/slide3.jpg" alt="New york" style="width:100%; height: 650px;">
     </div>
 
   <!-- Left and right controls -->
@@ -46,40 +46,50 @@
 <div id="upcomingEvents" class="container">
   <h1>Upcoming Events</h1>
   <?php
-  echo '<div class="col-md-3">';
-        echo '<div class="card mt-2 mb-2">';
-        echo '<img src="img/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img-top" alt="...">';
-        echo '<div class="card-body">';
-        echo '<p class="card-text"><small><b>Status: Pending</b></small></p>';
-        echo '<h5 class="card-title">Rock Climbing</h5>';
-        echo '<p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>';
-        if((isset($_SESSION['name']) && !empty($_SESSION['name']))) {
+      echo '<div class="col-md-3">';
+      echo '<div class="card mt-2 mb-2">';
+      echo '<img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img-top" alt="...">';
+      echo '<div class="card-body">';
+      echo '<p class="card-text"><small><b>Status: Pending</b></small></p>';
+      echo '<h5 class="card-title">Rock Climbing</h5>';
+      echo '<p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>';
+      if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
 
-          echo '<a href="eventpreview.php" class="btn btn-primary primary-bg mt-4" name="preview">Preview</a>';
+        echo '<a href="eventpreview.php" class="btn btn-primary primary-bg mt-4" name="preview">Preview</a>';
 
-        } else{
-          echo '<a href="login.php" class="btn btn-primary primary-bg mt-4" name="preview">Login to Preview</a>';
+      } else{
+        echo '<a href="login.php" class="btn btn-primary primary-bg mt-4" name="preview">Login to Preview</a>';
 
-        }
-       /* echo '<input type="hidden" name="id" value="'.$value['id'].'"/>';
-        echo '<input type="hidden" name="hidden_name" value="'.$value['name'].'"/>';
-        echo '<input type="hidden" name="hidden_price" value="'.$value['price'].'"/>';*/
-        echo '</div></div></div>';
+      }
+     /* echo '<input type="hidden" name="id" value="'.$value['id'].'"/>';
+      echo '<input type="hidden" name="hidden_name" value="'.$value['name'].'"/>';
+      echo '<input type="hidden" name="hidden_price" value="'.$value['price'].'"/>';*/
+      echo '</div></div></div>';
     ?>
 </div>
 
 <div id="customers" class="container">
   <h1>Customers</h1>
 
-  <div class="col-md-1">
-    <div class="card mt-2 mb-2" style="border: none;">
-      <img src="img/" onerror=this.src="img/person_alt.png" style="vertical-align: middle; width: 50px; height: 50px; border-radius: 50%;">
-      <p class="card-text">Mr. John</p>
-    </div>
-  </div>
+  <?php
+  $query = "SELECT * FROM member LIMIT 12";
+  $result = mysqli_query($conn, $query);
+  if(mysqli_num_rows($result) > 0)
+  {
+    while($row = mysqli_fetch_array($result))
+    {
+  
+      echo '<div class="col-md-1">';
+      echo '<div class="card mt-2 mb-2" style="border: none;">';
+      echo '<img src="img/users/'.$row['image'].'" onerror=this.src="img/users/person_alt.png" style="vertical-align: middle; width: 70px; height: 70px; border-radius: 50%;">';
+      echo'<p class="card-text" align="center">'.$row['title']." ".$row['firstName'].'</p>';
+      echo '</div></div>';
+    }
+  }else
+    echo '<h3 style="color: red; text-align: center;">No Users</h3>';
+  ?>
 
 </div>
-
 
 <?php
   require_once 'footer.php';

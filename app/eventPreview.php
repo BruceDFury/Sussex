@@ -16,7 +16,9 @@ require_once 'header.php';
             <div class="card mt-4 mb-3">
                 <div class="row mt-3 mb-3">
                     <div class="col-md-3">
-                        <img src="img/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img">
+                        <a href="/sussex/app/img/events/rancrisp_devilled_cashew_nuts_100g.jpg" target="_blank">
+                            <img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img">
+                        </a>
                     </div>
 
                     <div class="col-md-6">

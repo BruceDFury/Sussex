@@ -33,10 +33,10 @@
     session_start();
     require_once 'db_connector.php';
     
-    if((isset($_SESSION['name']) && !empty($_SESSION['name']))) {
+    if((isset($_SESSION['first_name']) && !empty($_SESSION['first_name']))) {
 
         echo '<li class="nav-item">
-        <a class="nav-link" href="signout.php" style="font-size: 15pt;">Welcome '.$_SESSION['name'].'. Sign Out</a>
+        <a class="nav-link" href="signout.php" style="font-size: 15pt;">Welcome '.$_SESSION['first_name'].'. Sign Out</a>
         </li>';
 
       } else{
@@ -68,13 +68,10 @@
         <a class="nav-link" href="#customers">Customers</a>
       </li>
       <?php
-      if((isset($_SESSION['name']) && !empty($_SESSION['name']))) {
+      if((isset($_SESSION['first_name']) && !empty($_SESSION['first_name']))) {
 
         echo '<li class="nav-item">
         <a class="nav-link" href="dashboard.php">Dashboard</a>
-        </li>';
-        echo '<li class="nav-item">
-        <a class="nav-link" href="profile.php">Profile</a>
         </li>';
       }
       ?>      
