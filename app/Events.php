@@ -7,7 +7,16 @@ require_once 'header.php';
       <a href="dashboard.php" style=" font-size: 18pt; text-decoration: none;">Dashboard</a><font style="font-size: 18pt"> / Events</font>
     </div>
 </div>
-
+<?php
+if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
+    ?>
+        <div class="alert alert-danger" align="center">
+          <strong><?php echo $_SESSION['error'];?></strong>
+        </div>
+    <?php
+        unset($_SESSION['error']);
+    }
+?>
 <form action="events.php" method="POST" class="d-flex" style="justify-content: center; margin-top: 20px;">
 </br>
   <input type="text" name="search" class="form-control" style="width: 400px;">
@@ -102,10 +111,15 @@ require_once 'header.php';
                 </div>
               </div>
               <div class="col-sm-3">
-                <form action="#" method="POST">
+                <form action="payment.php" method="POST">
                   <span style='font-size:30px;'>&#8356; 228</span>
                   <br/>
+                  <input type="hidden" name="event_id" value="<?php echo "1";?>">
+                  <input type="hidden" name="event" value="<?php echo "Rock Climbing";?>"/>
+                  <input type="hidden" name="event_date" value="<?php echo "2021-03-22 01:05:03";?>"/>
                   <input type="submit" name="checkout" class="btn btn-success" value="Checkout" />
+                  <input type="hidden" name="total" value="<?php echo "228";?>"/>
+                  <input type="hidden" name="orderno" value="<?php echo time();?>"/>
                 </form>
               </div>
             </div>
