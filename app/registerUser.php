@@ -1,7 +1,6 @@
 <?php
 session_start();
-require_once 'db_connector.php';
-//require_once 'header.php';
+require_once 'header.php';
 
 $title = $_POST['title'];
 $firstName = $_POST['fname'];
@@ -12,9 +11,10 @@ $phone = $_POST['phone'];
 $email = $_POST['email'];
 $password = md5($_POST['password']);
 $cPassword = md5($_POST['cpassword']);
-$favouriteActivity = $_POST['favouriteActivity'];
 $personalityType = $_POST['personalityType'];
 $hobies = $_POST['hobies'];
+$games = $_POST['games'];
+
 
 //select qurey
 $selectQuery = "select * from member where email = '$email'";
@@ -29,7 +29,11 @@ else{
 
 	if($password===$cPassword){
 
-		$insrtQuery = "insert into member (title,firstName,lastName,dob,nic,phone,email,password,favouriteActivity,personalityType,hobies) values ('$title','$firstName','$lastName','$dob','$nic','$phone','$email','$password','$favouriteActivity','$personalityType','$hobies')";
+		$filename = $_FILES["uploadfile"]["name"]; 
+		$tempname = $_FILES["uploadfile"]["tmp_name"];     
+		$folder = "img/users/".$filename; 
+
+		$insrtQuery = "insert into member (title,firstName,lastName,dob,nic,phone,email,password,personalityType,hobies,games,image) values ('$title','$firstName','$lastName','$dob','$nic','$phone','$email','$password','$personalityType','$hobies','$games','$filename')";
 		$resultReg = mysqli_query($conn,$insrtQuery);
 		
 		if (!$resultReg) 
@@ -38,10 +42,17 @@ else{
 			header("Location:/Sussex/app/login.php");
 		}
 		else
-		{
-			$_SESSION['success'] = "success";
-			$_SESSION['error'] = "Account Successfully created!";
-			header("Location:/Sussex/app/login.php");
+		{	  
+			// Now let's move the uploaded image into the folder: image 
+			if (move_uploaded_file($tempname, $folder))  {
+				$_SESSION['success'] = "success";
+				$_SESSION['error'] = "Account Successfully created!";
+				header("Location:/Sussex/app/login.php");
+				
+			}else{
+				$_SESSION['error'] = "Image not Updated";
+				header("Location:/Sussex/app/login.php");
+			}
 		}
 	}
 	else
@@ -51,4 +62,5 @@ else{
 		//echo "Password and Confirm Password must be same";
 	}
 }
+?>
 ?>

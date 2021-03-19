@@ -1,29 +1,5 @@
 <?php
-session_start();  
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title></title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <!-- bootstrab and javascript libraries for tokenfield tags -->
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"> 
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/css/bootstrap-tokenfield.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js"></script>
-  
-</head>
-<body>
-<?php
-
+require_once 'header.php';
 if(isset($_SESSION['success'])){
    if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
     ?>
@@ -47,7 +23,7 @@ if(isset($_SESSION['success'])){
 }  
 ?>
 
-<div class="container" style="padding-top: 100px">
+<div class="container" style="padding-top: 20px;">
 <div class="row">
 <div class="col-sm-4"></div>
 <div class="col-sm-4">	
@@ -61,7 +37,7 @@ if(isset($_SESSION['success'])){
 		  	<div class="tab-content">
 			    <div id="login" class="tab-pane fade in active">
 			    	
-	                <form method="POST" action="#" style="padding-top: 80px; margin-left: 25px; margin-right: 25px">
+	                <form method="POST" action="validate.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px">
 	                    <div class="form-group">
 		                    <label for="email">Email</label>
 		                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required="">
@@ -77,7 +53,11 @@ if(isset($_SESSION['success'])){
 	                
 			    </div>
 			    <div id="signUp" class="tab-pane fade">
-			       <form method="POST" action="registerUser.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px">
+			       <form method="POST" action="registerUser.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px" enctype="multipart/form-data">
+			       		<div class="form-group" style="text-align: center;">
+			       			<img src="" onerror=this.src="img/users/person_alt.png" id="output_image" style="vertical-align: middle; width: 150px; height: 150px; border-radius: 50%;"></a>
+				       		<input type="file" onchange="preview_image(event)" name="uploadfile" class="form-control" required="">
+ 						</div>
 			       		<div class="form-group">
 	                    <label for="title">Title</label>
 	                    <select class="form-control" id="title" name="title" required="">
@@ -121,10 +101,8 @@ if(isset($_SESSION['success'])){
 	                    </div>
 	                    <div class="form-group">
 	                    	<label>Personality Description</label>
-	                   		<input type="text" class="form-control" name="favouriteActivity" id="favouriteActivity" placeholder="Favourite Activity" required="">
-	                   		</br>
-
-		                    <select class="form-control" id="personalityType" name="personalityType" required="">
+	                   		
+	                   		<select class="form-control" id="personalityType" name="personalityType" required="">
 		                    	<option value="" disabled selected hidden>Select Personality Type</option>
 		                        <option>Driver</option>
 		                        <option>Analytical</option>
@@ -132,7 +110,11 @@ if(isset($_SESSION['success'])){
 		                        <option>Expressive</option>
 		                    </select>
 		                	</br>
-		                    <input type="text" name="hobies" id="hobies" class="form-control" placeholder="Hobbies" required=""/>
+
+		                    <input type="text" name="hobies" id="hobies"  class="form-control" placeholder="Hobbies" required=""/>
+		                	</br>
+
+		                	<input type="text" name="games" id="games"  class="form-control" placeholder="Games" required=""/>
 	                    </div>
 	                    <div>
 	                   		<input type="checkbox" value="" required/> Agree, Terms and Conditions
@@ -147,23 +129,21 @@ if(isset($_SESSION['success'])){
 	</div>
 </div>
 <div class="col-sm-4"></div>
-</div> 
 </div>
-
-
-<footer class="container">
-    <p>&copy; 2021 Sussex Companions. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-</footer>
+<?php
+require_once 'footer.php';  
+?> 
+</div>
 
 <script type="text/javascript">
 $(document).ready(function(){
  $('#hobies').tokenfield({
   autocomplete:{
   	source: function (request, response) {
-          jQuery.get("getHobies.php", {
+          jQuery.get('getHobies.php', {
               query: request.term
           }, function (data) {
-              data = $.parseJSON(data);
+              data = JSON.parse(data);
               response(data);
           });
       },
@@ -173,5 +153,16 @@ $(document).ready(function(){
  });
 });
 </script>
-</body>
-</html>
+
+<script type='text/javascript'>
+function preview_image(event) 
+{
+ var reader = new FileReader();
+ reader.onload = function()
+ {
+  var output = document.getElementById('output_image');
+  output.src = reader.result;
+ }
+ reader.readAsDataURL(event.target.files[0]);
+}
+</script>

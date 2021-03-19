@@ -1,57 +1,140 @@
-<html>
-<head>
-
 <?php
-require_once "header.php";
+require_once 'header.php'; 
 ?>
 
+<div class="row container"  style="margin-top: -20px;">
+    <div class="col-sm-12">
+      <a href="dashboard.php" style=" font-size: 18pt; text-decoration: none;">Dashboard</a><font style="font-size: 18pt"> / Events</font>
+    </div>
+</div>
+<?php
+if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
+    ?>
+        <div class="alert alert-danger" align="center">
+          <strong><?php echo $_SESSION['error'];?></strong>
+        </div>
+    <?php
+        unset($_SESSION['error']);
+    }
+?>
+<form action="events.php" method="POST" class="d-flex" style="justify-content: center; margin-top: 20px;">
+</br>
+  <input type="text" name="search" class="form-control" style="width: 400px;">
+  <button type="submit" class="btn btn-primary" name="btn_search" style="margin-left: 10px;">Search</button>
+</form>
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<title>Events</title>
-
-
-</head>
-<body>
-
-<br>
-
-  <form action = "connect.php" method="post">
-  <div class="form-group">
-    <label for="Name">Your Name:</label>
-    <input type="text" class="form-control" name="name" placeholder="eg: Mr. Fernando">
-  </div>
-  <div class="form-group">
-    <label for="events">Upcoming Events</label>
-    <select class="form-control" name="events">
-      <option>Sussex 20th Anniversary</option>
-      <option>Retirement Party</option>
-      <option>Food Festival 2021</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="members">No. of Members? (minimum 4 members)</label>
-    <select multiple class="form-control" name="members">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-    </select>
-	<br>
-	
-	<button class="btn btn-primary" type="submitform">Submit</button>
-  </div>
- 
+<div class="container" style="margin-top: 25px;">
+  <div class="row" style="justify-content: center;">
   
-  </form>
+  <?php
+  if(isset($_POST['btn_search']) && !empty(trim($_POST['search'])))
+  {
 
+    $search = $_POST['search'];
 
+    $query = "SELECT * FROM event WHERE event_name LIKE '%$search%'";
+    $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) > 0)
+    {
 
-</body>
+      echo '<h3 style="text-align: center;">Showing results for: <font color="red">'.$search.'</font></h3>';
+      
+      while($row = mysqli_fetch_array($result))
+      {
+    ?>
+      <div class="col-md-6">
+          <div class="card mt-2 mb-3" style="border:solid; border-width: 1px;  border-radius: 25px; padding: 10px;">
+            <div class="row align-items-center" style="text-align: center;">
+              <div class="col-sm-3">
+                <a href="/sussex/app/img/events/rancrisp_devilled_cashew_nuts_100g.jpg" target="_blank">
+                  <img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img" alt="..." style="padding: 10px;">
+                </a>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-body">
 
+                  <p class="card-text"><small><b>Status: Pending</b></small></p>
 
+                  <h5 class="card-title"><b>Rock Climbing</b></h5>
 
-</html>
+                  <p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>
+                  <form action="eventPreview.php" method="POST">
+                    <input type="submit" name="checkout" class="btn btn-info" value="Preview" />
+                  </form>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <form action="#" method="POST">
+                  <span style='font-size:30px;'>&#8356; 228</span>
+                  <br/>
+                  <input type="submit" name="checkout" class="btn btn-success" value="Checkout" />
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+  <?php
+      }
+    }
+    else{
+       echo '<h3 style="color: red; text-align: center;">No Upcomming Events!</h3>';
+    }
+  }
+  else{
 
+    $query = "SELECT * FROM event";
+    $result = mysqli_query($conn, $query);
+    if(mysqli_num_rows($result) > 0 )
+    {
+      while($row = mysqli_fetch_array($result))
+      {
+    ?>
+      <div class="col-md-6">
+          <div class="card mt-2 mb-3" style="border:solid; border-width: 1px;  border-radius: 25px; padding: 10px;">
+            <div class="row align-items-center" style="text-align: center;">
+              <div class="col-sm-3">
+                <a href="/sussex/app/img/events/rancrisp_devilled_cashew_nuts_100g.jpg" target="_blank">
+                  <img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img" alt="..." style="padding: 10px;">
+                </a>
+              </div>
+              <div class="col-sm-6">
+                <div class="card-body">
+
+                  <p class="card-text"><small><b>Status: Pending</b></small></p>
+
+                  <h5 class="card-title"><b>Rock Climbing</b></h5>
+
+                  <p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>
+                  <form action="eventPreview.php" method="POST">
+                    <input type="submit" name="checkout" class="btn btn-info" value="Preview" />
+                  </form>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <form action="payment.php" method="POST">
+                  <span style='font-size:30px;'>&#8356; 228</span>
+                  <br/>
+                  <input type="hidden" name="event_id" value="<?php echo "1";?>">
+                  <input type="hidden" name="event" value="<?php echo "Rock Climbing";?>"/>
+                  <input type="hidden" name="event_date" value="<?php echo "2021-03-22 01:05:03";?>"/>
+                  <input type="submit" name="checkout" class="btn btn-success" value="Checkout" />
+                  <input type="hidden" name="total" value="<?php echo "228";?>"/>
+                  <input type="hidden" name="orderno" value="<?php echo time();?>"/>
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+      <?php
+      }
+    }else{
+        echo '<h3 style="color: red; text-align: center;">No Matching Records Found!</h3>';
+    }
+  }
+  ?>
+  </div>
+</div>
+
+<?php
+  require_once 'footer.php'; 
+?>
