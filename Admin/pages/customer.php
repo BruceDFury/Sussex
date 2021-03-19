@@ -84,7 +84,11 @@ require_once('auth.php');
                                             <span>Address : </span><input type="text" name="address" required="" class = "form-control" />
                                             <span>Contact : </span><input type="text" name="contact" required="" class = "form-control" />
                                             <span>Membership No. : </span><input type="text" name="memno" required="" class = "form-control" />
+                                           
                                             <span>&nbsp;</span><input class="btn btn-primary btn-block" type="submit" value="Save" class = "form-control" />
+                                            
+                  
+              
                                         </div>
                                     </form>
                                 </div>

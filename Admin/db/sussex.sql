@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2021 at 08:54 AM
+-- Generation Time: Mar 19, 2021 at 08:14 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -47,23 +47,33 @@ CREATE TABLE `customer` (
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
   `event_name` varchar(255) NOT NULL,
-  `event_startdate` date NOT NULL,
-  `event_enddate` date NOT NULL,
-  `event_starttime` varchar(255) NOT NULL,
+  `event_startdate` datetime NOT NULL,
+  `event_enddate` datetime NOT NULL,
   `event_description` varchar(500) NOT NULL,
   `event_price` varchar(11) NOT NULL,
-  `photo` varchar(255) NOT NULL
+  `photo` varchar(255) NOT NULL,
+  `event_status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`id`, `event_name`, `event_startdate`, `event_enddate`, `event_starttime`, `event_description`, `event_price`, `photo`) VALUES
-(1, 'nnnnn', '0000-00-00', '0000-00-00', '21:30', 'mmmm', '2000', ''),
-(2, 'nnnnn', '2021-09-21', '2021-10-21', '21:30', 'mmmm', '2000', ''),
-(3, 'position', '2021-09-21', '2021-10-21', '21:30', 'mmmm', '2000', ''),
-(4, 'nnnnn', '2021-09-21', '2021-10-21', '21:30', 'mmmm', '2000', '');
+INSERT INTO `event` (`id`, `event_name`, `event_startdate`, `event_enddate`, `event_description`, `event_price`, `photo`, `event_status`) VALUES
+(20, 'DJ Party', '2021-03-21 19:00:00', '2021-03-22 11:13:00', 'This is the largest DJ Event of the Year', '2000', 'dj-party-vector-87905.jpg', 'Pending'),
+(21, 'EDM Night', '2021-03-23 18:45:00', '2021-03-24 02:25:00', 'Sri Lanka Largest EDM Event in this year', '4000', 'dj-party-vector-87905.jpg', 'Pending');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game`
+--
+
+CREATE TABLE `game` (
+  `game_id` int(11) NOT NULL,
+  `game_name` varchar(255) NOT NULL,
+  `game_description` varchar(1000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -174,6 +184,12 @@ ALTER TABLE `event`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `game`
+--
+ALTER TABLE `game`
+  ADD PRIMARY KEY (`game_id`);
+
+--
 -- Indexes for table `hobby`
 --
 ALTER TABLE `hobby`
@@ -217,7 +233,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `game`
+--
+ALTER TABLE `game`
+  MODIFY `game_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hobby`

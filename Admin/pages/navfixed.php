@@ -84,13 +84,16 @@ $finalcode='RS-'.createRandomPassword();
 					<li>
 						<a href="customer.php" style="color: #004d1a;"><i class="fa fa-user fa-fw"></i> Customer</a>
 					</li>
+					<li>
+						<a href="member.php" style="color: #004d1a;"><i class="fa fa-user fa-fw"></i> Members</a>
+					</li>
 					
 					
 					<li>
-						<a href="#" style="color: #004d1a;"><i class="fa fa-files-o fa-fw"></i> Hobbies And Intrests<span class="fa arrow"></span></a>
+						<a href="#" style="color: #004d1a;"><i class="fa fa-files-o fa-fw"></i> Games And Intrests<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
 							<li>
-								<a href="hobbies.php" style="color: #004d1a;">Hobbies</a>
+								<a href="games.php" style="color: #004d1a;">Games</a>
 							</li>
 							<li>
 								<a href="intrests.php" style="color: #004d1a;">Intrests</a>
@@ -101,6 +104,13 @@ $finalcode='RS-'.createRandomPassword();
 
 					<li>
 						<a href="#" style="color: #004d1a;"><i class="fa fa-files-o fa-fw"></i> REPORTS<span class="fa arrow"></span></a>
+						<ul class="nav nav-second-level">
+							<li>
+								<a href="eventreport.php" style="color: #004d1a;">Event Report</a>
+							</li>
+						
+							
+						</ul>
 						
 					</li>
 

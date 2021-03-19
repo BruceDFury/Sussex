@@ -56,7 +56,7 @@ require_once('auth.php');
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">EVENT LIST</h1>
+                    <h1 class="page-header">Games List</h1>
                 </div>
 
                 <div id="maintable"><div style="margin-top: -19px; margin-bottom: 21px;">
@@ -65,35 +65,23 @@ require_once('auth.php');
                 <div class="panel-body">
                     <!-- Button trigger modal -->
                     <button class="btn btn-primary" data-toggle="modal" data-target="#addc">
-                        Add Event
+                        Add Game
                     </button>
                     <!-- Modal -->
                     <div class="modal fade" id="addc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Add Event</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Add Game</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="saveevent.php" method="post" class = "form-group" enctype="multipart/form-data">
+                                    <form action="savegames.php" method="post" class = "form-group">
                                         <div id="ac">
-        <span>Name : </span><input type="text" name="name" class = "form-control" />
-        <span>Start Date and Time : </span><input type="datetime-local" name="strdte" class = "form-control" />
-        <span>End Date and Time: </span><input type="datetime-local" name="enddte" class = "form-control" />
-       
-        <span>Event Description : </span><input type="text" name="des" class = "form-control" />
-        <span>Event Price : </span><input type="text" name="price" class = "form-control" />
-        <span>Photo</span><input type="file" name="photo"  class = "form-control"/>
-        <span>Status</span>
-                            <select name="status" class = "form-control" >
-                            <option>Select Status</option>
-                            <option>Pending</option>
-                            <option>Available</option>
-                            <option>Finished</option>
-                        
-                            </select>
-                                            <span>&nbsp;</span><input class="btn btn-primary btn-block" type="submit" value="Save" name="submit" class = "form-control" />
+                                            <span>Name : </span><input type="text" name="name" required="" class = "form-control" />
+                                            <span>Description : </span><input type="text" name="des" required="" class = "form-control" />
+                                            
+                                            <span>&nbsp;</span><input class="btn btn-primary btn-block" type="submit" value="Save" class = "form-control" />
                                         </div>
                                     </form>
                                 </div>
@@ -108,12 +96,9 @@ require_once('auth.php');
                     <thead>
                         <tr>
                             <th width="25%"> Name </th>
-                            <th width="25%"> Start Date and Time</th>
-                            <th width="25%"> End Date and Time</th>
-                          
+                           
                             <th> Description </th>
-                            <th> Status </th>
-                            <th width="15%"> Price </th>
+                           
                             <th width="10%"> Action </th>
                         </tr>
                     </thead>
@@ -121,23 +106,18 @@ require_once('auth.php');
 
                         <?php
                         include('connect.php');
-                        $result = $db->prepare("SELECT * FROM event ORDER BY event_name");
+                        $result = $db->prepare("SELECT * FROM game ORDER BY game_name");
                         $result->execute();
                         for($i=0; $row = $result->fetch(); $i++){
                             ?>
                             <tr class="record">
-                                <td><?php echo $row['event_name']; ?></td>
-                                <td><?php echo $row['event_startdate']; ?></td>
-                                <td><?php echo $row['event_enddate']; ?></td>
-                               
-                                <td align="right"><?php echo $row['event_description']; ?></td>
-                                <td align="right"><?php echo $row['event_status']; ?></td>
-                                <td align="right"><?php echo $row['event_price']; ?></td>
-
-                                <td><a rel="facebox" class="btn btn-primary" href="editevent.php?id=<?php echo $row['id']; ?>"> 
+                                <td><?php echo $row['game_name']; ?></td>
+                                <td><?php echo $row['game_description']; ?></td>
+                             
+                                <td><a rel="facebox" class="btn btn-primary" href="editgames.php?id=<?php echo $row['game_id']; ?>"> 
                                     <i class = "fa fa-pencil"></i>
                                 </a>  
-                                <a href="#" id="<?php echo $row['id']; ?>" class="btn btn-danger delbutton" title="Click To Delete">
+                                <a href="#" id="<?php echo $row['game_id']; ?>" class="btn btn-danger delbutton" title="Click To Delete">
                                     <i class="fa fa-trash"></i>
                                 </a>
                             </td>
@@ -170,7 +150,7 @@ if(confirm("Sure you want to delete this update? There is NO undo!"))
 
    $.ajax({
      type: "GET",
-     url: "deletevents.php",
+     url: "deletegames.php",
      data: info,
      success: function(){
 

@@ -12,6 +12,30 @@ require_once('auth.php');
 	<meta name="author" content="">
 
 	<title>Sussex</title>
+
+	   <style>
+        #chart {
+            width       : 100%;
+            height      : 500px;
+            font-size   : 11px;
+        } 
+        .amcharts-pie-slice {
+          transform: scale(1);
+          transform-origin: 50% 50%;
+          transition-duration: 0.3s;
+          transition: all .3s ease-out;
+          -webkit-transition: all .3s ease-out;
+          -moz-transition: all .3s ease-out;
+          -o-transition: all .3s ease-out;
+          cursor: pointer;
+          box-shadow: 0 0 30px 0 #000;
+      }
+
+      .amcharts-pie-slice:hover {
+          transform: scale(1.1);
+          filter: url(#shadow);
+      }                                         
+  </style>
 	
 	<link rel="shortcut icon" href="agrilo.jpg">
 
@@ -49,6 +73,22 @@ require_once('auth.php');
 		})
 	</script>
 
+	  <script language="javascript">
+    function Clickheretoprint()
+    { 
+      var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
+      disp_setting+="scrollbars=yes,width=800, height=400, left=100, top=25"; 
+      var content_vlue = document.getElementById("content").innerHTML; 
+
+      var docprint=window.open("","",disp_setting); 
+      docprint.document.open(); 
+      docprint.document.write('</head><body onLoad="self.print()" style="width: 1000px; height:400; font-size: 20px; font-family: arial;">');          
+      docprint.document.write(content_vlue); 
+      docprint.document.close(); 
+      docprint.focus(); 
+  }
+</script>
+
 
 </head>
 
@@ -64,6 +104,16 @@ require_once('auth.php');
 				<div class="col-lg-12">
 					<h3 class="page-header">Welcome:<strong> <?php echo $session_admin_name;?></strong></h3>
 				</div>
+
+				 <div class="content">
+      <div class="container-fluid">
+        
+
+
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </div>
 
 				<!-- /.col-lg-12 -->
 			</div>
@@ -121,8 +171,49 @@ require_once('auth.php');
 <!-- /#wrapper -->
 
 
+
 <!-- jQuery -->
 <script src="../vendor/jquery/jquery.min.js"></script>
+
+
+        <script src="plugins/amcharts/amcharts.js"></script>
+        <script src="plugins/amcharts/animate.min.js"></script>
+        <script src="plugins/amcharts/themes/light.js"></script>
+        <script src="plugins/amcharts/export/export.min.js"></script>
+        <script src="plugins/amcharts/themes/patterns.js"></script>
+        <script type="plugins/export/export.css" type="text/css" media="all""></script>
+        <script src="plugins/amcharts/plugins/responsive/responsive.min.js"></script>
+        <script src="plugins/amcharts/serial.js"></script>
+        <script src="plugins/amcharts/pie.js"></script>
+
+
+        <script type="text/javascript">
+            var raw = '<?php echo $d; ?>';
+            var data = JSON.parse(raw);
+            var chart = AmCharts.makeChart( "chart", {
+                "type": "pie",
+                "theme": "light",
+                "dataProvider": data ,
+                "titleField": "title",
+                "valueField": "value",
+                "labelRadius": 25,
+                
+                "radius": "37%",
+                "innerRadius": "40%",
+                "labelText": " [[title]] ([[percents]]%)",
+                "export": {
+                    "enabled": true
+                },
+                "depth3D": 10,
+                "angle": 17,
+                "fontFamily": "Helvetica",
+                "fontSize": 13,
+                "balloonText": "[[value]]",
+                "color": "#222",
+        // "colors": ['#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222', '#222']
+        "colors": ['#FF6600', '#FCD202', '#B0DE09', '#0D8ECF', '#2A0CD0', '#CD0D74', '#CC0000', '#00CC00', '#0000CC', '#DDDDDD', '#999999', '#222333', '#990000']
+    } );
+</script>
 
 
 <!-- Bootstrap Core JavaScript -->
