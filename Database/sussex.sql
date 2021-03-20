@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2021 at 10:09 PM
+-- Generation Time: Mar 20, 2021 at 01:28 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -46,45 +46,23 @@ CREATE TABLE `customer` (
 
 CREATE TABLE `event` (
   `id` int(11) NOT NULL,
-  `event_name` varchar(255) DEFAULT NULL,
-  `event_startdate` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `event_enddate` date NOT NULL,
-  `event_starttime` varchar(255) CHARACTER SET utf8mb4 NOT NULL,
-  `event_description` varchar(500) CHARACTER SET utf8mb4 NOT NULL,
-  `event_price` varchar(11) CHARACTER SET utf8mb4 NOT NULL,
-  `photo` varchar(255) CHARACTER SET utf8mb4 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `event_name` varchar(255) NOT NULL,
+  `event_startdate` datetime NOT NULL,
+  `event_enddate` datetime NOT NULL,
+  `event_description` varchar(500) NOT NULL,
+  `event_price` varchar(11) NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `event_status` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`id`, `event_name`, `event_startdate`, `event_enddate`, `event_starttime`, `event_description`, `event_price`, `photo`) VALUES
-(1, 'nnnnnbcgcgc', '2021-03-18 09:45:13', '0000-00-00', '21:30', 'mmmm', '2000', ''),
-(2, 'nnnnncghfhfh', '2021-03-18 09:45:18', '2021-10-21', '21:30', 'mmmm', '2000', ''),
-(3, 'position', '2021-09-20 18:30:00', '2021-10-21', '21:30', 'mmmm', '2000', ''),
-(4, 'nnnnn', '2021-09-20 18:30:00', '2021-10-21', '21:30', 'mmmm', '2000', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `events`
---
-
-CREATE TABLE `events` (
-  `id` int(11) NOT NULL,
-  `title` varchar(250) DEFAULT NULL,
-  `event_date` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `events`
---
-
-INSERT INTO `events` (`id`, `title`, `event_date`) VALUES
-(1, 'Walk-In', '2018-06-05 05:37:27'),
-(2, 'Online Booking', '2018-06-05 21:07:05'),
-(3, 'Facebook Booking', '2018-06-06 22:31:00');
+INSERT INTO `event` (`id`, `event_name`, `event_startdate`, `event_enddate`, `event_description`, `event_price`, `photo`, `event_status`) VALUES
+(20, 'DJ Party', '2021-03-22 19:45:00', '2021-03-22 11:13:00', 'This is the largest DJ Event of the Year', '2000', 'dj-party-vector-87905.jpg', 'Pending'),
+(21, 'EDM Night', '2021-03-23 18:45:00', '2021-03-24 02:25:00', 'Sri Lanka Largest EDM Event in this year', '4000', 'dj-party-vector-87905.jpg', 'Pending'),
+(22, 'EDM Night', '2021-04-23 18:45:00', '2021-04-23 20:25:00', 'Largest EDM Event in this year', '4000', 'dj-party-vector-87905.jpg', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -103,6 +81,27 @@ CREATE TABLE `friends` (
   `hobbies` varchar(500) NOT NULL,
   `games` varchar(500) NOT NULL,
   `image` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `friends`
+--
+
+INSERT INTO `friends` (`id`, `email`, `phone`, `friendEmail`, `name`, `age`, `personalityType`, `hobbies`, `games`, `image`) VALUES
+(16, 'user1@gmail.com', '1234567890', 'user@gmail.com', 'Mr. Janz Clinston', '52', 'Driver', 'Laravel, PHP, Example', 'Ping Pong', 'janz.png'),
+(17, 'user1@gmail.com', '0778675643', 'mohamed@gmail.com', 'Mr. Mohammed Rifkhan', '55', 'Analytical', 'Pagination', 'puzzle', 'png.png'),
+(18, 'user1@gmail.com', '0764541155', 'jim@gmail.com', 'Mr. Jim Alton', '55', 'Analytical', 'Pagination', 'puzzle', 'wallpaper2you_13001.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `game`
+--
+
+CREATE TABLE `game` (
+  `game_id` int(11) NOT NULL,
+  `game_name` varchar(255) NOT NULL,
+  `game_description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -147,7 +146,9 @@ CREATE TABLE `member` (
   `password` varchar(100) DEFAULT NULL,
   `personalityType` varchar(20) DEFAULT NULL,
   `hobies` varchar(200) DEFAULT NULL,
-  `games` varchar(500) NOT NULL,
+  `games` varchar(500) DEFAULT NULL,
+  `join_date` date DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
   `image` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -155,12 +156,39 @@ CREATE TABLE `member` (
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id`, `title`, `firstName`, `lastName`, `dob`, `nic`, `phone`, `email`, `password`, `personalityType`, `hobies`, `games`, `image`) VALUES
-(11, 'Mr.', 'Janz', 'Clinston', '1968-11-19', '123456789V', '1234567890', 'user@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Driver', 'Laravel, PHP, Example', 'Ping Pong', 'janz.png'),
-(12, 'Mr.', 'Ishak ', 'khan', '1968-05-18', '029380213v', '0764531144', 'ishak@gmail.com', '0192023a7bbd73250516f069df18b500', 'Driver', 'Laravel 5', 'Ping Pong', '516B5WsSOeL._AC_.jpg'),
-(13, 'Mrs.', 'Kithimini', 'Prabodh', '1966-01-20', '92837127v', '0776562110', 'kithmi@gmail.com', '0192023a7bbd73250516f069df18b500', 'Driver', 'Laravel 5', 'Ping Pong', 'mercedes.jpg'),
-(14, 'Mr.', 'Mohammed', 'Rifkhan', '1965-06-01', '09743984623v', '0778675643', 'mohamed@gmail.com', '0192023a7bbd73250516f069df18b500', 'Analytical', 'Pagination', 'puzzle', 'png.png'),
-(15, 'Mr.', 'Jim', 'Alton', '1966-02-15', '938473483v', '0764541155', 'jim@gmail.com', '0192023a7bbd73250516f069df18b500', 'Analytical', 'Pagination', 'puzzle', 'wallpaper2you_13001.jpg');
+INSERT INTO `member` (`id`, `title`, `firstName`, `lastName`, `dob`, `nic`, `phone`, `email`, `password`, `personalityType`, `hobies`, `games`, `join_date`, `end_date`, `image`) VALUES
+(11, 'Mr.', 'Janz', 'Clinston', '1968-11-19', '123456789V', '1234567890', 'user@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Driver', 'Laravel, PHP, Example', 'Ping Pong', NULL, NULL, 'janz.png'),
+(12, 'Mr.', 'Ishak ', 'khan', '1968-05-18', '029380213v', '0764531144', 'ishak@gmail.com', '0192023a7bbd73250516f069df18b500', 'Driver', 'Laravel 5', 'Ping Pong', NULL, NULL, '516B5WsSOeL._AC_.jpg'),
+(13, 'Mrs.', 'Kithimini', 'Prabodh', '1966-01-20', '92837127v', '0776562110', 'kithmi@gmail.com', '0192023a7bbd73250516f069df18b500', 'Driver', 'Laravel 5', 'Ping Pong', NULL, NULL, 'mercedes.jpg'),
+(14, 'Mr.', 'Mohammed', 'Rifkhan', '1965-06-01', '09743984623v', '0778675643', 'mohamed@gmail.com', '0192023a7bbd73250516f069df18b500', 'Analytical', 'Pagination', 'puzzle', NULL, NULL, 'png.png'),
+(15, 'Mr.', 'Jim', 'Alton', '1966-02-15', '938473483v', '0764541155', 'jim@gmail.com', '0192023a7bbd73250516f069df18b500', 'Analytical', 'Pagination', 'puzzle', NULL, NULL, 'wallpaper2you_13001.jpg'),
+(21, 'Mr.', 'John', 'Doe', '1968-05-03', '681256987V', '0772569874', 'user1@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'PHP', 'Cricket, Swimming', '2021-03-19', '2021-05-19', 'janz.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `membershippayment`
+--
+
+CREATE TABLE `membershippayment` (
+  `id` int(20) NOT NULL,
+  `pId` varchar(100) NOT NULL,
+  `cus_email` varchar(100) NOT NULL,
+  `nic` varchar(15) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `amount` varchar(200) NOT NULL,
+  `pay_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `status` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `membershippayment`
+--
+
+INSERT INTO `membershippayment` (`id`, `pId`, `cus_email`, `nic`, `phone`, `amount`, `pay_time`, `status`) VALUES
+(1, '1616170403', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 16:37:14', 'valid'),
+(2, '1616171538', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 16:37:20', 'valid'),
+(3, '1616171763', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 12:07:01', 'valid');
 
 -- --------------------------------------------------------
 
@@ -186,8 +214,10 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `nic`, `orderno`, `email`, `phone`, `amount`, `event`, `edate`, `payment_time`, `status`) VALUES
-(89, '123456789V', '1616101268', 'user@gmail.com', '1234567890', '228', 'Rock Climbing', '2021-03-21 19:35:03', '2021-03-18 21:01:41', 'valid'),
-(90, '123456789V', '1616101409', 'user@gmail.com', '1234567890', '228', 'Rock Climbing', '2021-03-21 19:35:03', '2021-03-18 21:03:30', '');
+(113, '681256987V', '1616195209', 'user1@gmail.com', '0772569874', '2000', 'DJ Party', '2021-03-22 14:15:00', '2021-03-19 23:06:50', 'valid'),
+(114, '681256987V', '1616195300', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-04-23 13:15:00', '2021-03-19 23:08:22', 'valid'),
+(115, '681256987V', '1616195423', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-03-23 13:15:00', '2021-03-19 23:10:33', ''),
+(116, '681256987V', '1616195443', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-03-23 13:15:00', '2021-03-19 23:10:49', 'valid');
 
 -- --------------------------------------------------------
 
@@ -246,16 +276,16 @@ ALTER TABLE `event`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `events`
---
-ALTER TABLE `events`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `friends`
 --
 ALTER TABLE `friends`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `game`
+--
+ALTER TABLE `game`
+  ADD PRIMARY KEY (`game_id`);
 
 --
 -- Indexes for table `hobby`
@@ -273,6 +303,12 @@ ALTER TABLE `intrest`
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `membershippayment`
+--
+ALTER TABLE `membershippayment`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -307,19 +343,19 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `events`
---
-ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `game`
+--
+ALTER TABLE `game`
+  MODIFY `game_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hobby`
@@ -337,13 +373,19 @@ ALTER TABLE `intrest`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `membershippayment`
+--
+ALTER TABLE `membershippayment`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `position`
