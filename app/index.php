@@ -45,26 +45,76 @@
 
 <div id="upcomingEvents" class="container">
   <h1>Upcoming Events</h1>
+
   <?php
+
+  $searchDate = date("Y/m/d h:i:sa");
+
+  $queryEvent = "SELECT * FROM event WHERE event_startdate > '$searchDate' LIMIT 12";
+  $resultEvent = mysqli_query($conn, $queryEvent);
+
+  if(mysqli_num_rows($resultEvent) > 0)
+  {
+    while($row = mysqli_fetch_array($resultEvent))
+    {
       echo '<div class="col-md-3">';
       echo '<div class="card mt-2 mb-2">';
-      echo '<img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img-top" alt="...">';
+      echo '<img src="/Sussex/Admin/pages/img/'.$row['photo'].'" class="card-img-top" alt="...">';
       echo '<div class="card-body">';
-      echo '<p class="card-text"><small><b>Status: Pending</b></small></p>';
-      echo '<h5 class="card-title">Rock Climbing</h5>';
-      echo '<p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>';
-      if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) {
+      echo '<p class="card-text"><b>Status: '.$row['event_status'].'</b></p>';
+      echo '<h3 class="card-title">'.$row['event_name'].'</h3>';
+      
+      //date format
+      $date=date_create($row['event_startdate']);
 
-        echo '<a href="eventpreview.php" class="btn btn-primary primary-bg mt-4" name="preview">Preview</a>';
+      //timstamp to date start
+      $sd = $row['event_startdate'];
+      $timestampsd = strtotime($sd);
 
-      } else{
+      //timstamp to date end
+      $ed = $row['event_enddate'];
+      $timestamped = strtotime($ed);
+      
+      $days = (strtotime(date("Y-m-d", $timestamped)) - strtotime(date("Y-m-d", $timestampsd)))/60/60/24;
+
+      $event_name = $row['event_name'];
+      $event_date = $row['event_startdate'];
+
+      //count users
+      $countUsers = "SELECT * FROM payments WHERE event = '$event_name' AND edate = '$event_date' AND status = 'valid'";
+      $resUsrCnt = mysqli_query($conn,$countUsers);
+      $Count = mysqli_num_rows($resUsrCnt);
+
+      echo '<p class="card-text" style="font-size:12pt;">'.date_format($date,"d/F/Y").' | '.$days.' - days | '.$Count.' Users</p>';
+      if(isset($_SESSION['first_name']) && !empty($_SESSION['first_name'])) 
+      {
+
+        echo'<form action="eventpreview.php" method="POST">';
+        echo '<input type="submit" class="btn btn-primary primary-bg mt-4" name="preview" value="Preview"/>';
+        echo '<input type="hidden" name="img" value="'.$row['photo'].'"/>';
+        echo '<input type="hidden" name="status" value="'.$row['event_status'].'"/>';
+        echo '<input type="hidden" name="name" value="'.$row['event_name'].'"/>';
+        echo '<input type="hidden" name="date" value="'.date_format($date,"d/F/Y").'"/>';
+        echo '<input type="hidden" name="evt_date" value="'.$row['event_startdate'].'"/>';
+        echo '<input type="hidden" name="days" value="'.$days.'"/>';
+        echo '<input type="hidden" name="users" value="'.$Count.'"/>';
+        echo '<input type="hidden" name="dec" value="'.$row['event_description'].'"/>';
+        echo '<input type="hidden" name="amount" value="'.$row['event_price'].'"/>';
+        echo '<input type="hidden" name="eid" value="'.$row['id'].'"/>';
+        echo '</form>';
+
+      }
+      else
+      {
         echo '<a href="login.php" class="btn btn-primary primary-bg mt-4" name="preview">Login to Preview</a>';
 
       }
-     /* echo '<input type="hidden" name="id" value="'.$value['id'].'"/>';
-      echo '<input type="hidden" name="hidden_name" value="'.$value['name'].'"/>';
-      echo '<input type="hidden" name="hidden_price" value="'.$value['price'].'"/>';*/
       echo '</div></div></div>';
+    }
+  }else{
+    echo '<h3 style="color: red; text-align: center;">No Upcomming Events!</h3>';
+  }
+
     ?>
 </div>
 
@@ -86,7 +136,7 @@
       echo '</div></div>';
     }
   }else
-    echo '<h3 style="color: red; text-align: center;">No Users</h3>';
+    echo '<h3 style="color: red; text-align: center;">No Users!</h3>';
   ?>
 
 </div>

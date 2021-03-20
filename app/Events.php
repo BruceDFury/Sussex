@@ -17,6 +17,7 @@ if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
         unset($_SESSION['error']);
     }
 ?>
+
 <form action="events.php" method="POST" class="d-flex" style="justify-content: center; margin-top: 20px;">
 </br>
   <input type="text" name="search" class="form-control" style="width: 400px;">
@@ -31,8 +32,9 @@ if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
   {
 
     $search = $_POST['search'];
+    $searchDate = date("Y/m/d h:i:sa");
 
-    $query = "SELECT * FROM event WHERE event_name LIKE '%$search%'";
+    $query = "SELECT * FROM event WHERE event_name LIKE '%$search%' AND event_startdate > '$searchDate'";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0)
     {
@@ -45,29 +47,66 @@ if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
       <div class="col-md-6">
           <div class="card mt-2 mb-3" style="border:solid; border-width: 1px;  border-radius: 25px; padding: 10px;">
             <div class="row align-items-center" style="text-align: center;">
-              <div class="col-sm-3">
-                <a href="/sussex/app/img/events/rancrisp_devilled_cashew_nuts_100g.jpg" target="_blank">
-                  <img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img" alt="..." style="padding: 10px;">
-                </a>
+              <div class="col-sm-3">          
+                <img src="/Sussex/Admin/pages/img/<?php echo $row['photo']?>" class="card-img" alt="...">
               </div>
               <div class="col-sm-6">
                 <div class="card-body">
 
-                  <p class="card-text"><small><b>Status: Pending</b></small></p>
+                  <p class="card-text" style="font-size: 12pt;"><b>Status: <?php echo $row['event_status'];?></b></p>
 
-                  <h5 class="card-title"><b>Rock Climbing</b></h5>
+                  <h3 class="card-title"><b><?php echo $row['event_name'];?></b></h3>
+                  <?php
+                  //date format
+                  $date=date_create($row['event_startdate']);
 
-                  <p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>
-                  <form action="eventPreview.php" method="POST">
-                    <input type="submit" name="checkout" class="btn btn-info" value="Preview" />
-                  </form>
+                  //timstamp to date start
+                  $sd = $row['event_startdate'];
+                  $timestampsd = strtotime($sd);
+
+                  //timstamp to date end
+                  $ed = $row['event_enddate'];
+                  $timestamped = strtotime($ed);
+                  
+                  $days = (strtotime(date("Y-m-d", $timestamped)) - strtotime(date("Y-m-d", $timestampsd)))/60/60/24;
+
+                  $event_name = $row['event_name'];
+                  $event_date = $row['event_startdate'];
+
+                  //count users
+                  $countUsers = "SELECT * FROM payments WHERE event = '$event_name' AND edate = '$event_date' AND status = 'valid'";
+                  $resUsrCnt = mysqli_query($conn,$countUsers);
+                  $Count = mysqli_num_rows($resUsrCnt);
+
+                  echo '<p class="card-text" style="font-size:12pt;">'.date_format($date,"d/F/Y").' | '.$days.' - days | '.$Count.' Users</p>';
+
+                  echo'<form action="eventpreview.php" method="POST">';
+                  echo '<input type="submit" class="btn btn-primary primary-bg mt-4" name="preview" value="Preview"/>';
+                  echo '<input type="hidden" name="img" value="'.$row['photo'].'"/>';
+                  echo '<input type="hidden" name="status" value="'.$row['event_status'].'"/>';
+                  echo '<input type="hidden" name="name" value="'.$row['event_name'].'"/>';
+                  echo '<input type="hidden" name="date" value="'.date_format($date,"d/F/Y").'"/>';
+                  echo '<input type="hidden" name="evt_date" value="'.$row['event_startdate'].'"/>';
+                  echo '<input type="hidden" name="days" value="'.$days.'"/>';
+                  echo '<input type="hidden" name="users" value="'.$Count.'"/>';
+                  echo '<input type="hidden" name="dec" value="'.$row['event_description'].'"/>';
+                  echo '<input type="hidden" name="amount" value="'.$row['event_price'].'"/>';
+                  echo '<input type="hidden" name="eid" value="'.$row['id'].'"/>';
+                  echo '</form>';
+                  ?>
+
                 </div>
               </div>
               <div class="col-sm-3">
-                <form action="#" method="POST">
-                  <span style='font-size:30px;'>&#8356; 228</span>
+                <form action="payment.php" method="POST">
+                  <span style='font-size:30px;'>&#8356; <?php echo $row['event_price'];?></span>
                   <br/>
+                  <input type="hidden" name="event_id" value="<?php echo $row['id'];?>">
+                  <input type="hidden" name="event" value="<?php echo $row['event_name'];?>"/>
+                  <input type="hidden" name="evt_date" value="<?php echo $row['event_startdate'];?>"/>
                   <input type="submit" name="checkout" class="btn btn-success" value="Checkout" />
+                  <input type="hidden" name="total" value="<?php echo $row['event_price'];?>"/>
+                  <input type="hidden" name="orderno" value="<?php echo time();?>"/>
                 </form>
               </div>
             </div>
@@ -82,7 +121,9 @@ if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
   }
   else{
 
-    $query = "SELECT * FROM event";
+    $searchDate = date("Y/m/d h:i:sa");
+
+    $query = "SELECT * FROM event WHERE event_startdate > '$searchDate'";
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0 )
     {
@@ -93,32 +134,65 @@ if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
           <div class="card mt-2 mb-3" style="border:solid; border-width: 1px;  border-radius: 25px; padding: 10px;">
             <div class="row align-items-center" style="text-align: center;">
               <div class="col-sm-3">
-                <a href="/sussex/app/img/events/rancrisp_devilled_cashew_nuts_100g.jpg" target="_blank">
-                  <img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img" alt="..." style="padding: 10px;">
-                </a>
+                  <img src="/Sussex/Admin/pages/img/<?php echo $row['photo']?>" class="card-img" alt="...">
               </div>
               <div class="col-sm-6">
                 <div class="card-body">
+      
+                  <p class="card-text" style="font-size: 12pt;"><b>Status: <?php echo $row['event_status'];?></b></p>
 
-                  <p class="card-text"><small><b>Status: Pending</b></small></p>
+                  <h3 class="card-title"><b><?php echo $row['event_name'];?></b></h3>
+                  <?php
+                  //date format
+                  $date=date_create($row['event_startdate']);
 
-                  <h5 class="card-title"><b>Rock Climbing</b></h5>
+                  //timstamp to date start
+                  $sd = $row['event_startdate'];
+                  $timestampsd = strtotime($sd);
 
-                  <p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>
-                  <form action="eventPreview.php" method="POST">
-                    <input type="submit" name="checkout" class="btn btn-info" value="Preview" />
-                  </form>
+                  //timstamp to date end
+                  $ed = $row['event_enddate'];
+                  $timestamped = strtotime($ed);
+                  
+                  $days = (strtotime(date("Y-m-d", $timestamped)) - strtotime(date("Y-m-d", $timestampsd)))/60/60/24;
+
+                  $event_name = $row['event_name'];
+                  $event_date = $row['event_startdate'];
+
+                  //count users
+                  $countUsers = "SELECT * FROM payments WHERE event = '$event_name' AND edate = '$event_date' AND status = 'valid'";
+                  $resUsrCnt = mysqli_query($conn,$countUsers);
+                  $Count = mysqli_num_rows($resUsrCnt);
+
+                  echo '<p class="card-text" style="font-size:12pt;">'.date_format($date,"d/F/Y").' | '.$days.' - days | '.$Count.' Users</p>';
+                
+
+                  echo'<form action="eventpreview.php" method="POST">';
+                  echo '<input type="submit" class="btn btn-primary primary-bg mt-4" name="preview" value="Preview"/>';
+                  echo '<input type="hidden" name="img" value="'.$row['photo'].'"/>';
+                  echo '<input type="hidden" name="status" value="'.$row['event_status'].'"/>';
+                  echo '<input type="hidden" name="name" value="'.$row['event_name'].'"/>';
+                  echo '<input type="hidden" name="date" value="'.date_format($date,"d/F/Y").'"/>';
+                  echo '<input type="hidden" name="days" value="'.$days.'"/>';
+                  echo '<input type="hidden" name="users" value="'.$Count.'"/>';
+                  echo '<input type="hidden" name="evt_date" value="'.$event_date.'"/>';
+                  echo '<input type="hidden" name="dec" value="'.$row['event_description'].'"/>';
+                  echo '<input type="hidden" name="amount" value="'.$row['event_price'].'"/>';
+                  echo '<input type="hidden" name="eid" value="'.$row['id'].'"/>';
+                  echo '</form>';
+
+                  ?>
                 </div>
               </div>
               <div class="col-sm-3">
                 <form action="payment.php" method="POST">
-                  <span style='font-size:30px;'>&#8356; 228</span>
+                  <span style='font-size:30px;'>&#8356; <?php echo $row['event_price'];?></span>
                   <br/>
-                  <input type="hidden" name="event_id" value="<?php echo "1";?>">
-                  <input type="hidden" name="event" value="<?php echo "Rock Climbing";?>"/>
-                  <input type="hidden" name="event_date" value="<?php echo "2021-03-22 01:05:03";?>"/>
+                  <input type="hidden" name="event_id" value="<?php echo $row['id'];?>">
+                  <input type="hidden" name="event" value="<?php echo $row['event_name'];?>"/>
+                  <input type="hidden" name="evt_date" value="<?php echo $row['event_startdate'];?>"/>
                   <input type="submit" name="checkout" class="btn btn-success" value="Checkout" />
-                  <input type="hidden" name="total" value="<?php echo "228";?>"/>
+                  <input type="hidden" name="total" value="<?php echo $row['event_price'];?>"/>
                   <input type="hidden" name="orderno" value="<?php echo time();?>"/>
                 </form>
               </div>
@@ -134,6 +208,7 @@ if(isset($_SESSION['error']) && !empty($_SESSION['error'])){
   ?>
   </div>
 </div>
+
 
 <?php
   require_once 'footer.php'; 

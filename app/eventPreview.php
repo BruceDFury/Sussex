@@ -1,10 +1,36 @@
 <?php
-require_once 'header.php'; 
+require_once 'header.php';
+
+if (isset($_POST['preview'])) 
+{
+    $_SESSION['img'] = $_POST['img'];
+    $_SESSION['status'] = $_POST['status'];
+    $_SESSION['name'] = $_POST['name'];
+    $_SESSION['date'] = $_POST['date'];
+    $_SESSION['days'] = $_POST['days'];
+    $_SESSION['users'] = $_POST['users'];
+    $_SESSION['dec'] = $_POST['dec'];
+    $_SESSION['amount'] = $_POST['amount'];
+    $_SESSION['eid'] = $_POST['eid'];
+    $_SESSION['evt_date'] = $_POST['evt_date'];
+    
+}
+
+$eid = $_SESSION['eid'];
+$img = $_SESSION['img'];
+$status =  $_SESSION['status'];
+$name = $_SESSION['name'];
+$date = $_SESSION['date'];
+$days =  $_SESSION['days'];
+$users = $_SESSION['users'];
+$dec = $_SESSION['dec'];
+$amount = $_SESSION['amount'];
+$event_date = $_SESSION['evt_date'];
 ?>
 
 <div class="row container" style="margin-top: -20px;">
     <div class="col-sm-12">
-      <a href="dashboard.php" style="font-size: 18pt; text-decoration: none;">Dashboard / </a><a href="events.php" style="text-decoration: none; font-size: 18pt;">Events</a><font style="font-size: 18pt"> / Rock Climbing</font>
+      <a href="dashboard.php" style="font-size: 18pt; text-decoration: none;">Dashboard / </a><a href="events.php" style="text-decoration: none; font-size: 18pt;">Events</a><font style="font-size: 18pt"> / <?php echo $name;?></font>
     </div>
 </div>
 
@@ -14,19 +40,20 @@ require_once 'header.php';
     <div class="row">
         <div class="col-md-8">
             <div class="card mt-4 mb-3">
-                <div class="row mt-3 mb-3">
+                <div class="row mt-3 mb-3 align-items-center">
                     <div class="col-md-3">
-                        <a href="/sussex/app/img/events/rancrisp_devilled_cashew_nuts_100g.jpg" target="_blank">
-                            <img src="img/events/rancrisp_devilled_cashew_nuts_100g.jpg" class="card-img">
-                        </a>
+                    
+                         <img src="/Sussex/Admin/pages/img/<?php echo $img;?>" class="card-img">
+                       
                     </div>
 
                     <div class="col-md-6">
-                        <p class="card-text"><small><b>Status: Pending</b></small></p>
+                        <p class="card-text" style="font-size: 12pt;"><b>Status: <?php echo $status;?></b></p>
 
-                        <h5 class="card-title"><b>Rock Climbing</b></h5>
+                        <h3 class="card-title"><b><?php echo $name;?></b></h3>
 
-                        <p class="card-text"><small>15th February 2021 | 5 - days | 10 Users</small></p>
+                        </br>
+                        <p class="card-text" style="font-size: 12pt;"><?php echo $date;?> | <?php echo $days;?> - days | <?php echo $users;?> Users</p>
                     </div>
                 </div>        
             </div>  
@@ -39,17 +66,17 @@ require_once 'header.php';
                 <div class="row align-items-center">
                     <!-- <div class="card-body"> -->
                         <div class="col-md-9">
-                            <p align="justify">Rock climbing is the sport or activity of climbing rock faces, especially with the aid of ropes and special equipment. The concept is to reach an end point, or a summit, of a rock face or structure. ... There are many types of rock climbing, each with their own equipment, setting, and surface(s)</p>
+                            <p align="justify" style="font-size: 12pt;"><?php echo $dec;?></p>
                         </div>
                         <div class="col-md-3" style="text-align: center;">
                             <form action="payment.php" method="POST">
-                                <span style='font-size:30px;'>&#8356; 228</span>
+                                <span style='font-size:30px;'>&#8356; <?php echo $amount;?></span>
                                 <br/>
-                                <input type="hidden" name="event_id" value="<?php echo "1";?>">
-                                <input type="hidden" name="event" value="<?php echo "Rock Climbing";?>"/>
-                                <input type="hidden" name="event_date" value="<?php echo "2021-03-22 01:05:03";?>"/>
+                                <input type="hidden" name="event_id" value="<?php echo $eid;?>">
+                                <input type="hidden" name="event" value="<?php echo $name;?>"/>
+                                <input type="hidden" name="evt_date" value="<?php echo $event_date;?>"/>
                                 <input type="submit" name="checkout" class="btn btn-success" value="Checkout" />
-                                <input type="hidden" name="total" value="<?php echo "228";?>"/>
+                                <input type="hidden" name="total" value="<?php echo $amount;?>"/>
                                 <input type="hidden" name="orderno" value="<?php echo time();?>"/>
                             </form>
                         </div>
@@ -60,6 +87,7 @@ require_once 'header.php';
     </div>
 
 </div>
+
 </br>
 <?php
 require_once 'footer.php'; 

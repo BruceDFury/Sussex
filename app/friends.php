@@ -57,16 +57,18 @@
 				echo '</td>';
     			echo '</tr>';
     			echo '</form>';
-    			echo '</tbody>';
-		    	echo '</table>';
+        
+                
+               
+    			
     		}
     	}
     	else
     	{
     		echo '<tr><td colspan="8"><h3 style="color: red; text-align: center;">You have not matched any friends!</h3></td></tr>';
-    		echo '</tbody>';
-		    echo '</table>';
+ 
     	}
+        
 
     	if (isset($_POST["btn_delete"])) 
 		{
@@ -91,10 +93,12 @@
 			}
 		}
     ?> 
+</tbody>
+</table>
 </div>
 
 <?php
-  require_once 'footer.php'; 
+require_once 'footer.php'; 
 ?>
 
 <script>

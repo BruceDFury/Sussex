@@ -11,8 +11,7 @@
 
 	$conn=mysqli_connect("localhost", "root", "","example");
 
-	$sql = "SELECT name FROM tags WHERE name LIKE '%".$_GET['query']."%'
-			LIMIT 10"; 
+	$sql = "SELECT name FROM tags WHERE name LIKE '%".$_GET['query']."%' LIMIT 10"; 
 
 
 	//$result = $mysqli->query($sql);

@@ -14,12 +14,9 @@ $dob = $_SESSION['dob'];
 $nic = $_SESSION['nic'];
 $phone = $_SESSION['phone'];
 $email = $_SESSION['email'];
-$password = $_SESSION['password'];
-$cPassword = $_SESSION['cPassword'];
-$personalityType = $_SESSION['personalityType'];
-$hobies = $_SESSION['hobies'];
 $games = $_SESSION['games'];
 $amount = $_SESSION['amount'];
+$endDate = $_SESSION['end_date'];
 ?>
 
 <main role="main">
@@ -30,19 +27,16 @@ $amount = $_SESSION['amount'];
         <?php
             if($status == '1')
             {
+				//next month
+				$edate = date('Y-m-d', strtotime('+1 month', strtotime($endDate)));
+
             	$ptime = date('Y-m-d H:i:s');
 				$jdate = date('Y-m-d');
-				//next month
-				$d = strtotime("+1 Months");
-				$edate = date("Y-m-d", $d);
-
-				$filename = $_SESSION['filename'];
 
 				//insert to memmber table
-                $insrtQuery = "insert into member (title,firstName,lastName,dob,nic,phone,email,password,personalityType,hobies,games,join_date,end_date,image) values ('$title','$firstName','$lastName','$dob','$nic','$phone','$email','$password','$personalityType','$hobies','$games','$jdate','$edate','$filename')";
+                $updateMember = "UPDATE member SET end_date = '$edate' WHERE email = '$email'";
+                mysqli_query($conn,$updateMember);
 				
-				mysqli_query($conn,$insrtQuery);
-
 				//membershippayment table
 				$insertmpay = "INSERT INTO membershippayment (pId,cus_email,nic,phone,amount,pay_time,status) VALUES ('$payID','$email','$nic','$phone','$amount','$ptime','valid')";
 				mysqli_query($conn,$insertmpay);
@@ -61,9 +55,8 @@ $amount = $_SESSION['amount'];
 
                 <?php
     			echo '<h3 align="center">Thank You!, '.$title." ".$firstName.'</h3>';
-    			echo '<h3 align="center">Welcome to Sussex Companions !</h3>';
+    			echo '<h3 align="center">Welcome back!</h3>';
     			?>	
-
     			</br>
 				<div style="text-align: center;">
 		            <a href="login.php" class="btn btn-primary primary-bg mt-4">Click to Login</a>
@@ -95,7 +88,6 @@ $amount = $_SESSION['amount'];
     </div>
   </div>
 </div>
-
 
 <?php
 

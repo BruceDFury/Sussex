@@ -17,11 +17,12 @@ $status = $_SESSION['status'];
         <?php
             if($status == '1'){
 
-                $query = "UPDATE payments SET status = 'valid' WHERE orderno = '$orderno'";
-                mysqli_query($conn,$query);
+
+                $updateQuery = "UPDATE payments SET status='valid' WHERE orderno='$orderno'";
+                mysqli_query($conn,$updateQuery);
 
                 echo '<h2 align="center">Payment Successful !!!</h2>';
-                echo '<h3 align="center">Order No : <?php echo $orderno; ?></h3></br>';
+                echo '<h3 align="center">Order No : '.$orderno.'</h3></br>';
                 ?>
                 <div style="text-align: center;">      
                    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="green" class="bi bi-check2-circle" viewBox="0 0 16 16">

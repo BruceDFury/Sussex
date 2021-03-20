@@ -82,7 +82,7 @@ require_once 'header.php';
 		$games = $_POST['hidden_games'];
 		$image = $_POST['hidden_image'];
 
-		$selectQueryFriend = "SELECT * FROM friends WHERE email = '$email'";
+		$selectQueryFriend = "SELECT * FROM friends WHERE email = '$email' AND friendEmail = '$friendEmail'";
 		$sresultFriend = mysqli_query($conn,$selectQueryFriend);
 
 		if (mysqli_num_rows($sresultFriend) != null) 

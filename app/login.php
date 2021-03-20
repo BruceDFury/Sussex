@@ -24,11 +24,9 @@ if(isset($_SESSION['success'])){
 ?>
 
 <div class="container" style="padding-top: 20px;">
-<div class="row">
-<div class="col-sm-4"></div>
-<div class="col-sm-4">	
-	<div class="card" style="width: 400px;">
-		<div class="card-body" style="border:solid; border-width: 1px;  border-radius: 10px;">
+<div class="row" style="justify-content: center;">	
+	<div class="card" style="width: 400px; border:solid; border-width: 1px;  border-radius: 10px;">
+		<div class="card-body">
 		  <ul class="nav nav-tabs" style="float: left;">
 		    <li class="active"><a data-toggle="pill" href="#login" style="font-size: 18pt;">Login</a></li>
 		    <li><a data-toggle="pill" href="#signUp" style="font-size: 18pt;">Sign UP</a></li>
@@ -53,7 +51,7 @@ if(isset($_SESSION['success'])){
 	                
 			    </div>
 			    <div id="signUp" class="tab-pane fade">
-			       <form method="POST" action="registerUser.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px" enctype="multipart/form-data">
+			       <form method="POST" action="membershipPayment.php" style="padding-top: 80px; margin-left: 25px; margin-right: 25px" enctype="multipart/form-data">
 			       		<div class="form-group" style="text-align: center;">
 			       			<img src="" onerror=this.src="img/users/person_alt.png" id="output_image" style="vertical-align: middle; width: 150px; height: 150px; border-radius: 50%;"></a>
 				       		<input type="file" onchange="preview_image(event)" name="uploadfile" class="form-control" required="">
@@ -120,22 +118,22 @@ if(isset($_SESSION['success'])){
 	                   		<input type="checkbox" value="" required/> Agree, Terms and Conditions
 	                    </div>
 	                    <div align="center" style="margin-top: 10px; margin-bottom: 10px;">
-	                    	<button type="submit" class="btn btn-primary">Sign UP</button>
+	                    	<button type="submit" class="btn btn-primary" name="btn_signUp">Sign UP</button>
 	                    </div>
+	                    <input type="hidden" name="payID" value="<?php echo time();?>"/>
 	               </form>
 			    </div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="col-sm-4"></div>
-</div>
+
 <?php
 require_once 'footer.php';  
 ?> 
-</div>
 
-<script type="text/javascript">
+
+<script type='text/javascript'>
 $(document).ready(function(){
  $('#hobies').tokenfield({
   autocomplete:{
