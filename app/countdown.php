@@ -9,14 +9,16 @@
 <h1 style="color: red; text-align: center">Have a nice day</h1>
 <h1 style="color: red; text-align: center">!!!</h1>
 
+<?php
+  $date=date_create($_SESSION['end_date']);
+
+  $formatted_date = $newticket['DateCreated'] =   date_format($date,"Y/m/d H:i:s");
+
+?>
 <script>
 
-//Jan 5, 2022 15:37:25
-
-$date=date_create($_SESSION['end_date']);
-
 // Set the date we're counting down to
-var countDownDate = new Date(date_format($date,"m/d/Y H:i:s")).getTime();
+var countDownDate = new Date("<?php echo $formatted_date; ?>").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
