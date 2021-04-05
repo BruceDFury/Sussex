@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2021 at 01:28 AM
+-- Generation Time: Apr 05, 2021 at 09:11 AM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -104,6 +104,23 @@ CREATE TABLE `game` (
   `game_description` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `game`
+--
+
+INSERT INTO `game` (`game_id`, `game_name`, `game_description`) VALUES
+(1, 'Archery', ''),
+(2, 'Badminton', ''),
+(3, 'Baseball', ''),
+(4, 'Basketball', ''),
+(5, 'Bodybuilding', ''),
+(6, 'Football', ''),
+(7, 'Swimming', ''),
+(8, 'Computer Games', ''),
+(9, 'Cricket', ''),
+(10, 'Kite flying', ''),
+(11, 'Martial arts', '');
+
 -- --------------------------------------------------------
 
 --
@@ -115,6 +132,21 @@ CREATE TABLE `hobby` (
   `hobby_name` varchar(255) NOT NULL,
   `hobby_description` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `hobby`
+--
+
+INSERT INTO `hobby` (`hobby_id`, `hobby_name`, `hobby_description`) VALUES
+(1, 'Art', ''),
+(2, 'Cooking or baking', ''),
+(3, 'Exercising and healthcare', ''),
+(4, 'Playing an instrument', ''),
+(5, 'Travel', ''),
+(6, 'Writing or blogging', ''),
+(7, 'Outdoor activities', ''),
+(8, 'Community service', ''),
+(9, 'Team or individual sports', '');
 
 -- --------------------------------------------------------
 
@@ -157,12 +189,7 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `title`, `firstName`, `lastName`, `dob`, `nic`, `phone`, `email`, `password`, `personalityType`, `hobies`, `games`, `join_date`, `end_date`, `image`) VALUES
-(11, 'Mr.', 'Janz', 'Clinston', '1968-11-19', '123456789V', '1234567890', 'user@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Driver', 'Laravel, PHP, Example', 'Ping Pong', NULL, NULL, 'janz.png'),
-(12, 'Mr.', 'Ishak ', 'khan', '1968-05-18', '029380213v', '0764531144', 'ishak@gmail.com', '0192023a7bbd73250516f069df18b500', 'Driver', 'Laravel 5', 'Ping Pong', NULL, NULL, '516B5WsSOeL._AC_.jpg'),
-(13, 'Mrs.', 'Kithimini', 'Prabodh', '1966-01-20', '92837127v', '0776562110', 'kithmi@gmail.com', '0192023a7bbd73250516f069df18b500', 'Driver', 'Laravel 5', 'Ping Pong', NULL, NULL, 'mercedes.jpg'),
-(14, 'Mr.', 'Mohammed', 'Rifkhan', '1965-06-01', '09743984623v', '0778675643', 'mohamed@gmail.com', '0192023a7bbd73250516f069df18b500', 'Analytical', 'Pagination', 'puzzle', NULL, NULL, 'png.png'),
-(15, 'Mr.', 'Jim', 'Alton', '1966-02-15', '938473483v', '0764541155', 'jim@gmail.com', '0192023a7bbd73250516f069df18b500', 'Analytical', 'Pagination', 'puzzle', NULL, NULL, 'wallpaper2you_13001.jpg'),
-(21, 'Mr.', 'John', 'Doe', '1968-05-03', '681256987V', '0772569874', 'user1@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'PHP', 'Cricket, Swimming', '2021-03-19', '2021-05-19', 'janz.png');
+(22, 'Mr.', 'John', 'Doe', '1968-02-07', '688547865V', '0782568974', 'John@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Driver', 'Travel, Exercising and healthcare', 'Cricket', '2021-04-05', '2021-05-05', 'janz.png');
 
 -- --------------------------------------------------------
 
@@ -188,7 +215,8 @@ CREATE TABLE `membershippayment` (
 INSERT INTO `membershippayment` (`id`, `pId`, `cus_email`, `nic`, `phone`, `amount`, `pay_time`, `status`) VALUES
 (1, '1616170403', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 16:37:14', 'valid'),
 (2, '1616171538', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 16:37:20', 'valid'),
-(3, '1616171763', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 12:07:01', 'valid');
+(3, '1616171763', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 12:07:01', 'valid'),
+(4, '1617605214', 'John@gmail.com', '688547865V', '0782568974', '5', '2021-04-05 03:29:50', 'valid');
 
 -- --------------------------------------------------------
 
@@ -355,13 +383,13 @@ ALTER TABLE `friends`
 -- AUTO_INCREMENT for table `game`
 --
 ALTER TABLE `game`
-  MODIFY `game_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `game_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `hobby`
 --
 ALTER TABLE `hobby`
-  MODIFY `hobby_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `hobby_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `intrest`
@@ -373,13 +401,13 @@ ALTER TABLE `intrest`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `membershippayment`
 --
 ALTER TABLE `membershippayment`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `payments`

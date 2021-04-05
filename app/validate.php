@@ -21,9 +21,8 @@ if ($recCount != null) {
 
 	if($res[13]<$edate)
 	{
-		session_unset($_SESSION['first_name']);
 
-		$_SESSION['error'] = "Your membership was expired. Please make the payment to proceed";
+		$_SESSION['error'] = "Your membership has expired. Please make the payment to proceed";
 		header("Location: /Sussex/app/login.php");
 	}
 	else

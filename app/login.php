@@ -132,13 +132,33 @@ if(isset($_SESSION['success'])){
 require_once 'footer.php';  
 ?> 
 
-
+<!-- Show hobbies on hobbies text field -->
 <script type='text/javascript'>
 $(document).ready(function(){
  $('#hobies').tokenfield({
   autocomplete:{
   	source: function (request, response) {
           jQuery.get('getHobies.php', {
+              query: request.term
+          }, function (data) {
+              data = JSON.parse(data);
+              response(data);
+          });
+      },
+   	delay:100
+  },
+  showAutocompleteOnFocus: true
+ });
+});
+</script>
+
+<!-- code to Show games on games text field -->
+<script type='text/javascript'>
+$(document).ready(function(){
+ $('#games').tokenfield({
+  autocomplete:{
+  	source: function (request, response) {
+          jQuery.get('getGames.php', {
               query: request.term
           }, function (data) {
               data = JSON.parse(data);
