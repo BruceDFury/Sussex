@@ -13,7 +13,7 @@ $f = $_POST['price'];
 $g = $_FILES['photo']['name'];
 $h = $_FILES['photo']['tmp_name'];
 $i = $_POST['status'];
-$folder = 'pages/img/'.$g;
+$folder = 'img/'.$g;
 
 if (move_uploaded_file($h, $folder))  {
 			echo "Success";

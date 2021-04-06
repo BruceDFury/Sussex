@@ -58,8 +58,8 @@
     while($row = mysqli_fetch_array($resultEvent))
     {
       echo '<div class="col-md-3">';
-      echo '<div class="card mt-2 mb-2">';
-      echo '<img src="/Sussex/Admin/pages/img/'.$row['photo'].'" class="card-img-top" alt="...">';
+      echo '<div class="card mt-2 mb-2" style="height:400px;">';
+      echo '<img src="/Sussex/Admin/pages/img/'.$row['photo'].'" class="card-img-top" alt="..." height="200">';
       echo '<div class="card-body">';
       echo '<p class="card-text"><b>Status: '.$row['event_status'].'</b></p>';
       echo '<h3 class="card-title">'.$row['event_name'].'</h3>';
