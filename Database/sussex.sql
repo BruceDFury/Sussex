@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2021 at 09:11 AM
+-- Generation Time: Apr 06, 2021 at 06:37 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -62,7 +62,8 @@ CREATE TABLE `event` (
 INSERT INTO `event` (`id`, `event_name`, `event_startdate`, `event_enddate`, `event_description`, `event_price`, `photo`, `event_status`) VALUES
 (20, 'DJ Party', '2021-03-22 19:45:00', '2021-03-22 11:13:00', 'This is the largest DJ Event of the Year', '2000', 'dj-party-vector-87905.jpg', 'Pending'),
 (21, 'EDM Night', '2021-03-23 18:45:00', '2021-03-24 02:25:00', 'Sri Lanka Largest EDM Event in this year', '4000', 'dj-party-vector-87905.jpg', 'Pending'),
-(22, 'EDM Night', '2021-04-23 18:45:00', '2021-04-23 20:25:00', 'Largest EDM Event in this year', '4000', 'dj-party-vector-87905.jpg', 'Pending');
+(22, 'EDM Night', '2021-04-23 18:45:00', '2021-04-23 20:25:00', 'Largest EDM Event in this year', '4000', 'dj-party-vector-87905.jpg', 'Pending'),
+(24, 'Sinhala and Tamil New Year 2021', '2021-04-13 09:00:00', '2021-04-15 12:00:00', 'Sinhalese New Year, generally known as Aluth Avurudda in Sri Lanka, is a Sri Lankan holiday that celebrates the traditional New Year of the Sinhalese people in Sri Lanka. It is a major anniversary celebrated by not only the Sinhalese people but by most Sri Lankans.', '20', 's&t_newYear.jpg', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -90,7 +91,8 @@ CREATE TABLE `friends` (
 INSERT INTO `friends` (`id`, `email`, `phone`, `friendEmail`, `name`, `age`, `personalityType`, `hobbies`, `games`, `image`) VALUES
 (16, 'user1@gmail.com', '1234567890', 'user@gmail.com', 'Mr. Janz Clinston', '52', 'Driver', 'Laravel, PHP, Example', 'Ping Pong', 'janz.png'),
 (17, 'user1@gmail.com', '0778675643', 'mohamed@gmail.com', 'Mr. Mohammed Rifkhan', '55', 'Analytical', 'Pagination', 'puzzle', 'png.png'),
-(18, 'user1@gmail.com', '0764541155', 'jim@gmail.com', 'Mr. Jim Alton', '55', 'Analytical', 'Pagination', 'puzzle', 'wallpaper2you_13001.jpg');
+(18, 'user1@gmail.com', '0764541155', 'jim@gmail.com', 'Mr. Jim Alton', '55', 'Analytical', 'Pagination', 'puzzle', 'wallpaper2you_13001.jpg'),
+(19, 'ruwan@gmail.com', '0712365478', 'saman@gmail.com', 'Mr. Saman Kumara', '54', 'Analytical', 'Writing or blogging, Art', 'Bodybuilding', 'janz.png');
 
 -- --------------------------------------------------------
 
@@ -189,7 +191,9 @@ CREATE TABLE `member` (
 --
 
 INSERT INTO `member` (`id`, `title`, `firstName`, `lastName`, `dob`, `nic`, `phone`, `email`, `password`, `personalityType`, `hobies`, `games`, `join_date`, `end_date`, `image`) VALUES
-(22, 'Mr.', 'John', 'Doe', '1968-02-07', '688547865V', '0782568974', 'John@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Driver', 'Travel, Exercising and healthcare', 'Cricket', '2021-04-05', '2021-05-05', 'janz.png');
+(22, 'Mr.', 'John', 'Doe', '1968-02-07', '688547865V', '0782568974', 'John@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Driver', 'Travel, Exercising and healthcare', 'Cricket', '2021-04-05', '2021-05-05', 'janz.png'),
+(23, 'Mr.', 'Ruwan', 'Jayasinghe', '1966-03-09', '665897413V', '0786589741', 'ruwan@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'Writing or blogging, Playing an instrument', 'Kite flying, Archery', '2021-04-06', '2021-05-06', 'janz.png'),
+(24, 'Mr.', 'Saman', 'Kumara', '1966-07-12', '667842129V', '0712365478', 'saman@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'Writing or blogging, Art', 'Bodybuilding', '2021-04-06', '2021-05-06', 'janz.png');
 
 -- --------------------------------------------------------
 
@@ -216,7 +220,10 @@ INSERT INTO `membershippayment` (`id`, `pId`, `cus_email`, `nic`, `phone`, `amou
 (1, '1616170403', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 16:37:14', 'valid'),
 (2, '1616171538', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 16:37:20', 'valid'),
 (3, '1616171763', 'user1@gmail.com', '681256987V', '0772569874', '5', '2021-03-19 12:07:01', 'valid'),
-(4, '1617605214', 'John@gmail.com', '688547865V', '0782568974', '5', '2021-04-05 03:29:50', 'valid');
+(4, '1617605214', 'John@gmail.com', '688547865V', '0782568974', '5', '2021-04-05 03:29:50', 'valid'),
+(5, '1617723038', 'ruwan@gmail.com', '665897413V', '0786589741', '5', '2021-04-06 12:07:22', 'valid'),
+(6, '1617724022', 'saman@gmail.com', '667842129V', '0712365478', '5', '2021-04-06 12:20:34', 'valid'),
+(7, '1617724409', 'John@gmail.com', '688547865V', '0782568974', '5', '2021-04-06 12:24:19', 'valid');
 
 -- --------------------------------------------------------
 
@@ -245,7 +252,9 @@ INSERT INTO `payments` (`id`, `nic`, `orderno`, `email`, `phone`, `amount`, `eve
 (113, '681256987V', '1616195209', 'user1@gmail.com', '0772569874', '2000', 'DJ Party', '2021-03-22 14:15:00', '2021-03-19 23:06:50', 'valid'),
 (114, '681256987V', '1616195300', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-04-23 13:15:00', '2021-03-19 23:08:22', 'valid'),
 (115, '681256987V', '1616195423', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-03-23 13:15:00', '2021-03-19 23:10:33', ''),
-(116, '681256987V', '1616195443', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-03-23 13:15:00', '2021-03-19 23:10:49', 'valid');
+(116, '681256987V', '1616195443', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-03-23 13:15:00', '2021-03-19 23:10:49', 'valid'),
+(117, '665897413V', '1617723886', 'ruwan@gmail.com', '0786589741', '20', 'Sinhala and Tamil New Year 2021', '2021-04-13 03:30:00', '2021-04-06 15:44:52', ''),
+(118, '665897413V', '1617723902', 'ruwan@gmail.com', '0786589741', '20', 'Sinhala and Tamil New Year 2021', '2021-04-13 03:30:00', '2021-04-06 15:45:07', 'valid');
 
 -- --------------------------------------------------------
 
@@ -371,13 +380,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `game`
@@ -401,19 +410,19 @@ ALTER TABLE `intrest`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `membershippayment`
 --
 ALTER TABLE `membershippayment`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
 
 --
 -- AUTO_INCREMENT for table `position`
