@@ -19,7 +19,6 @@ $cPassword = $_SESSION['cPassword'];
 $personalityType = $_SESSION['personalityType'];
 $hobies = $_SESSION['hobies'];
 $games = $_SESSION['games'];
-$amount = $_SESSION['amount'];
 ?>
 
 <main role="main">
@@ -44,7 +43,7 @@ $amount = $_SESSION['amount'];
 				mysqli_query($conn,$insrtQuery);
 
 				//membershippayment table
-				$insertmpay = "INSERT INTO membershippayment (pId,cus_email,nic,phone,amount,pay_time,status) VALUES ('$payID','$email','$nic','$phone','$amount','$ptime','valid')";
+				$insertmpay = "INSERT INTO membershippayment (pId,cus_email,nic,phone,amount,pay_time,status) VALUES ('$payID','$email','$nic','$phone','5','$ptime','valid')";
 				mysqli_query($conn,$insertmpay);
 				
 

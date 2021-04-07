@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2021 at 06:37 PM
+-- Generation Time: Apr 07, 2021 at 07:11 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.2.32
 
@@ -92,7 +92,8 @@ INSERT INTO `friends` (`id`, `email`, `phone`, `friendEmail`, `name`, `age`, `pe
 (16, 'user1@gmail.com', '1234567890', 'user@gmail.com', 'Mr. Janz Clinston', '52', 'Driver', 'Laravel, PHP, Example', 'Ping Pong', 'janz.png'),
 (17, 'user1@gmail.com', '0778675643', 'mohamed@gmail.com', 'Mr. Mohammed Rifkhan', '55', 'Analytical', 'Pagination', 'puzzle', 'png.png'),
 (18, 'user1@gmail.com', '0764541155', 'jim@gmail.com', 'Mr. Jim Alton', '55', 'Analytical', 'Pagination', 'puzzle', 'wallpaper2you_13001.jpg'),
-(19, 'ruwan@gmail.com', '0712365478', 'saman@gmail.com', 'Mr. Saman Kumara', '54', 'Analytical', 'Writing or blogging, Art', 'Bodybuilding', 'janz.png');
+(19, 'ruwan@gmail.com', '0712365478', 'saman@gmail.com', 'Mr. Saman Kumara', '54', 'Analytical', 'Writing or blogging, Art', 'Bodybuilding', 'janz.png'),
+(21, 'meena@gmail.com', '0786589741', 'ruwan@gmail.com', 'Mr. Ruwan Jayasinghe', '55', 'Analytical', 'Writing or blogging, Playing an instrument', 'Kite flying, Archery', 'janz.png');
 
 -- --------------------------------------------------------
 
@@ -192,8 +193,9 @@ CREATE TABLE `member` (
 
 INSERT INTO `member` (`id`, `title`, `firstName`, `lastName`, `dob`, `nic`, `phone`, `email`, `password`, `personalityType`, `hobies`, `games`, `join_date`, `end_date`, `image`) VALUES
 (22, 'Mr.', 'John', 'Doe', '1968-02-07', '688547865V', '0782568974', 'John@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Driver', 'Travel, Exercising and healthcare', 'Cricket', '2021-04-05', '2021-05-05', 'janz.png'),
-(23, 'Mr.', 'Ruwan', 'Jayasinghe', '1966-03-09', '665897413V', '0786589741', 'ruwan@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'Writing or blogging, Playing an instrument', 'Kite flying, Archery', '2021-04-06', '2021-05-06', 'janz.png'),
-(24, 'Mr.', 'Saman', 'Kumara', '1966-07-12', '667842129V', '0712365478', 'saman@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'Writing or blogging, Art', 'Bodybuilding', '2021-04-06', '2021-05-06', 'janz.png');
+(23, 'Mr.', 'Ruwan', 'Jayasinghe', '1966-03-09', '665897413V', '0786589741', 'ruwan@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'Writing or blogging, Playing an instrument', 'Kite flying, Archery', '2021-04-06', '2021-04-06', 'janz.png'),
+(24, 'Mr.', 'Saman', 'Kumara', '1966-07-12', '667842129V', '0712365478', 'saman@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Analytical', 'Writing or blogging, Art', 'Bodybuilding', '2021-04-06', '2021-05-06', 'janz.png'),
+(25, 'Mrs.', 'Meena', 'Ann', '1970-06-17', '704589745V', '0775689742', 'meena@gmail.com', 'e99a18c428cb38d5f260853678922e03', 'Expressive', 'Playing an instrument', 'Swimming', '2021-04-07', '2021-06-07', 'meena.jpg');
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,11 @@ INSERT INTO `membershippayment` (`id`, `pId`, `cus_email`, `nic`, `phone`, `amou
 (4, '1617605214', 'John@gmail.com', '688547865V', '0782568974', '5', '2021-04-05 03:29:50', 'valid'),
 (5, '1617723038', 'ruwan@gmail.com', '665897413V', '0786589741', '5', '2021-04-06 12:07:22', 'valid'),
 (6, '1617724022', 'saman@gmail.com', '667842129V', '0712365478', '5', '2021-04-06 12:20:34', 'valid'),
-(7, '1617724409', 'John@gmail.com', '688547865V', '0782568974', '5', '2021-04-06 12:24:19', 'valid');
+(7, '1617724409', 'John@gmail.com', '688547865V', '0782568974', '5', '2021-04-06 12:24:19', 'valid'),
+(8, '1617811476', 'meena@gmail.com', '704589745V', '0775689742', '5', '2021-04-07 12:35:38', 'valid'),
+(9, '1617813129', 'meena@gmail.com', '704589745V', '0775689742', '', '2021-04-07 13:03:26', 'valid'),
+(10, '1617813129', 'meena@gmail.com', '704589745V', '0775689742', '', '2021-04-07 13:04:37', 'valid'),
+(11, '1617813129', 'meena@gmail.com', '704589745V', '0775689742', '5', '2021-04-07 13:05:25', 'valid');
 
 -- --------------------------------------------------------
 
@@ -254,7 +260,9 @@ INSERT INTO `payments` (`id`, `nic`, `orderno`, `email`, `phone`, `amount`, `eve
 (115, '681256987V', '1616195423', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-03-23 13:15:00', '2021-03-19 23:10:33', ''),
 (116, '681256987V', '1616195443', 'user1@gmail.com', '0772569874', '4000', 'EDM Night', '2021-03-23 13:15:00', '2021-03-19 23:10:49', 'valid'),
 (117, '665897413V', '1617723886', 'ruwan@gmail.com', '0786589741', '20', 'Sinhala and Tamil New Year 2021', '2021-04-13 03:30:00', '2021-04-06 15:44:52', ''),
-(118, '665897413V', '1617723902', 'ruwan@gmail.com', '0786589741', '20', 'Sinhala and Tamil New Year 2021', '2021-04-13 03:30:00', '2021-04-06 15:45:07', 'valid');
+(118, '665897413V', '1617723902', 'ruwan@gmail.com', '0786589741', '20', 'Sinhala and Tamil New Year 2021', '2021-04-13 03:30:00', '2021-04-06 15:45:07', 'valid'),
+(119, '704589745V', '1617812333', 'meena@gmail.com', '0775689742', '20', 'Sinhala and Tamil New Year 2021', '2021-04-13 03:30:00', '2021-04-07 16:19:00', ''),
+(120, '704589745V', '1617812537', 'meena@gmail.com', '0775689742', '20', 'Sinhala and Tamil New Year 2021', '2021-04-13 03:30:00', '2021-04-07 16:22:20', 'valid');
 
 -- --------------------------------------------------------
 
@@ -386,7 +394,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `game`
@@ -410,19 +418,19 @@ ALTER TABLE `intrest`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `membershippayment`
 --
 ALTER TABLE `membershippayment`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
 
 --
 -- AUTO_INCREMENT for table `position`

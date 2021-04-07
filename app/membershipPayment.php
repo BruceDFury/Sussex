@@ -92,7 +92,6 @@ $_SESSION['amount'] = $amountGBP;*/
         echo 'Email: '.$email.'</br>';
         echo 'Phone: '.$phone.'</p>';
     ?>
-    	<!-- <?php //echo number_format($amountGBP,2);?><?php //echo number_format($amountUSD,2);?> -->
     	</br>
  		<h4>Amount to pay &#8356 5.00</h4>		            
     </div>
