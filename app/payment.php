@@ -52,9 +52,9 @@ $nic = $_SESSION['nic'];
 $phone = $_SESSION['phone'];
 $email = $_SESSION['email'];
 
-$apound = 1.39;
+/*$apound = 1.39;
 $amountUSD = $total*$apound;
-$_SESSION['amount'] = $total;
+$_SESSION['amount'] = $total;*/
 
 //Pay pal URL
 $paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr'; 
@@ -78,9 +78,9 @@ $paypal_email = 'janzclinston2-facilitator@gmai.com';
         echo 'Phone: '.$phone.'</p>';
     ?>
     	</br>
- 		<h4>Ammount to pay &#8356 <?php echo number_format($total,2);?> (<?php echo number_format($amountUSD,2);?> USD)</h4>
+ 		<h4>Amount to pay &#8356 <?php echo number_format($total,2);?></h4>
 
-        <!-- <h3>Ammount to pay &#8356;. <?php //echo number_format($total,2);?></h3> -->
+        <!-- <h3>Amount to pay &#8356;. <?php //echo number_format($total,2);?></h3> -->
         
     </div>
 
@@ -93,8 +93,8 @@ $paypal_email = 'janzclinston2-facilitator@gmai.com';
         <!-- Details about the item that buyers will purchase. -->
         <input type="hidden" name="item_name" value="<?php echo $event;?>">
         <input type="hidden" name="item_number" value="<?php echo $eid;?>">
-        <input type="hidden" name="amount" value="<?php echo $amountUSD;?>">
-        <input type="hidden" name="currency_code" value="USD">           
+        <input type="hidden" name="amount" value="<?php echo $total;?>">
+        <input type="hidden" name="currency_code" value="GBP">           
         <!-- URLs -->
         <input type='hidden' name='cancel_return' value='http://localhost:8080/sussex/app/confirm.php?orderno=<?php echo $orderno;?>&status=0'>
         <input type='hidden' name='return' value='http://localhost:8080/sussex/app/confirm.php?orderno=<?php echo $orderno;?>&status=1'>                     

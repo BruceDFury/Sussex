@@ -50,10 +50,10 @@ $paypal_url = 'https://www.sandbox.paypal.com/cgi-bin/webscr';
 $paypal_email = 'janzclinston2-facilitator@gmai.com';
 
 //Currency conversion
-$apound = 1.39;
+/*$apound = 1.39;
 $amountGBP = 5;
 $amountUSD = $amountGBP*$apound;
-$_SESSION['amount'] = $amountGBP;
+$_SESSION['amount'] = $amountGBP;*/
 
 ?>
 <main role="main">
@@ -72,7 +72,7 @@ $_SESSION['amount'] = $amountGBP;
         echo 'Phone: '.$phone.'</p>';
     ?>
     	</br>
- 		<h4>Ammount to pay &#8356 <?php echo number_format($amountGBP,2);?> (<?php echo number_format($amountUSD,2);?> USD)</h4>		            
+ 		<h4>Amount to pay &#8356 5.00</h4>		            
     </div>
 
     <div class="col-sm-10 mt-5 mb-3">
@@ -84,8 +84,8 @@ $_SESSION['amount'] = $amountGBP;
         <!-- Details about the item that buyers will purchase. -->
         <input type="hidden" name="item_name" value="Membership Payment">
         <input type="hidden" name="item_number" value="<?php echo $email;?>">
-        <input type="hidden" name="amount" value="<?php echo $amountUSD;?>">
-        <input type="hidden" name="currency_code" value="USD">           
+        <input type="hidden" name="amount" value="5">
+        <input type="hidden" name="currency_code" value="GBP">           
         <!-- URLs -->
         <input type='hidden' name='cancel_return' value='http://localhost:8080/sussex/app/membership_renew_pay_confirm.php?payID=<?php echo $payID;?>&status=0'>
         <input type='hidden' name='return' value='http://localhost:8080/sussex/app/membership_renew_pay_confirm.php?payID=<?php echo $payID;?>&status=1'>                     

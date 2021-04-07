@@ -15,7 +15,6 @@ $nic = $_SESSION['nic'];
 $phone = $_SESSION['phone'];
 $email = $_SESSION['email'];
 $games = $_SESSION['games'];
-$amount = $_SESSION['amount'];
 $endDate = $_SESSION['end_date'];
 ?>
 
@@ -38,7 +37,7 @@ $endDate = $_SESSION['end_date'];
                 mysqli_query($conn,$updateMember);
 				
 				//membershippayment table
-				$insertmpay = "INSERT INTO membershippayment (pId,cus_email,nic,phone,amount,pay_time,status) VALUES ('$payID','$email','$nic','$phone','$amount','$ptime','valid')";
+				$insertmpay = "INSERT INTO membershippayment (pId,cus_email,nic,phone,amount,pay_time,status) VALUES ('$payID','$email','$nic','$phone','5','$ptime','valid')";
 				mysqli_query($conn,$insertmpay);
 				
 
