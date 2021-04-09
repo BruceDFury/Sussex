@@ -54,14 +54,17 @@ $endDate = $_SESSION['end_date'];
 
                 <?php
     			echo '<h3 align="center">Thank You!, '.$title." ".$firstName.'</h3>';
-    			echo '<h3 align="center">Welcome back!</h3>';
-    			?>	
-    			</br>
-				<div style="text-align: center;">
+    			?>
+    			<?php
+    			if(!(isset($_SESSION['first_name'])) && empty($_SESSION['first_name'])) {
+    				echo '<h3 align="center">Welcome back!</h3>'.'</br>';
+
+			        echo '<div style="text-align: center;">
 		            <a href="login.php" class="btn btn-primary primary-bg mt-4">Click to Login</a>
-		        </div>
-		    	</br>
-				<?php
+		        	</div>
+		    		</br>';
+		      	}
+			
 			} 
 			else
 			{

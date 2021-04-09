@@ -99,22 +99,38 @@ if(isset($_SESSION['success'])){
 	                    </div>
 	                    <div class="form-group">
 	                    	<label>Personality Description</label>
-	                   		
+
+	                    	<p>Visit to check your personality:</p>
+	                    	<a href="https://www.16personalities.com/free-personality-test" target="_blank">https://www.16personalities.com/free-personality-test</a>
+	                   		</br></br>
 	                   		<select class="form-control" id="personalityType" name="personalityType" required="">
 		                    	<option value="" disabled selected hidden>Select Personality Type</option>
-		                        <option>Driver</option>
-		                        <option>Analytical</option>
-		                        <option>Amiable</option>
-		                        <option>Expressive</option>
+		                        <option>Architect</option>
+		                        <option>Logician</option>
+		                        <option>Commander</option>
+		                        <option>Debater</option>
+		                        <option>Advocate</option>
+		                        <option>Mediator</option>
+		                        <option>Protogonist</option>
+		                        <option>Campaigner</option>
+		                        <option>Logitician</option>
+		                        <option>Defender</option>
+		                        <option>Executive</option>
+		                        <option>Consul</option>
+		                        <option>Virtuoso</option>
+		                        <option>Adventurer</option>
+		                        <option>Entrepreneur</option>
+		                        <option>Entertainer</option>
 		                    </select>
 		                	</br>
 
 		                    <input type="text" name="hobies" id="hobies"  class="form-control" placeholder="Hobbies" required=""/>
-		                	</br>
+		                	</br></br></br>
 
-		                	<input type="text" name="games" id="games"  class="form-control" placeholder="Games" required=""/>
+		                	<input type="text" name="games" id="games"  class="form-control" placeholder="Games" required="" />
 	                    </div>
 	                    <div>
+	                    </br></br>
 	                   		<input type="checkbox" value="" required/> Agree, Terms and Conditions
 	                    </div>
 	                    <div align="center" style="margin-top: 10px; margin-bottom: 10px;">
