@@ -38,7 +38,7 @@ if(isset($_POST['checkout']))
 	}
 }
 
-//againg storig to normal variable
+//again storig to normal variable
 $eid = $_SESSION['eid'];
 $event = $_SESSION['event'];
 $evt_date = $_SESSION['evt_date'];

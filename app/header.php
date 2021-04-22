@@ -62,16 +62,16 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <span><a class="nav-link" href="#aboutUs">About Us</a></span>
+          <a class="nav-link" href="#aboutUs">About Us</a>
         </li>
         <li class="nav-item">
-          <span><a class="nav-link" href="#upcomingEvents">Upcoming Events</a></span>
+          <a class="nav-link" href="#upcomingEvents">Upcoming Events</a>
         </li>
         <li class="nav-item">
-          <span><a class="nav-link" href="#customers">Customers</a></span>
+          <a class="nav-link" href="#customers">Customers</a>
         </li>
         <li class="nav-item">
-          <span><a class="nav-link" href="loginMR.php">Membership Payments</a></span>
+         <a class="nav-link" href="loginMR.php">Membership Payments</a>
         </li>
         <?php
         if ((isset($_SESSION['first_name']) && !empty($_SESSION['first_name']))) {
